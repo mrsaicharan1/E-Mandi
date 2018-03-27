@@ -30,12 +30,12 @@ def login():
     error = None
     
     
-    if form.validate_on_submit():
+    if request.method == 'POST':
         user = User.objects.filter(name=form.name.data).first()
         if user:
             if bcrypt.hashpw(form.password.data, user.password) == user.password:
                 session['name'] = form.name.data
-                
+                return 'Login Successful'
             else:
                 user = None
         if not user:

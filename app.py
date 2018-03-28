@@ -31,9 +31,9 @@ def login():
     
     
     if request.method == 'POST':
-        user = User.objects.filter(name=form.name.data).first()
+        user = User.query.filter_by(name=form.name.data).first()
         if user:
-            if bcrypt.hashpw(form.password.data, user.password) == user.password:
+            if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
                 return 'Login Successful'
             else:

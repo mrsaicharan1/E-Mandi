@@ -1,4 +1,5 @@
 from flask import Flask,Blueprint,render_template,request,redirect,session,url_for,abort
+from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
@@ -10,13 +11,13 @@ import bcrypt
 app = Flask(__name__)
 app.config.from_object('config') #specify database file path
 db = SQLAlchemy(app)
-
+bootstrap=Bootstrap(app)
 
 
 
 @app.route('/')
 def home():
-    return render_template('pages/placeholder.home.html')
+    return render_template('pages/index.html')
 
 
 @app.route('/about')

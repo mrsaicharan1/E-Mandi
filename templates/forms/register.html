@@ -4,7 +4,7 @@
   <form method="POST" action="{{ url_for('register') }}" role="form">
     <h3 class="form-heading">Register <a href="{{ url_for('home') }}" title="Back to homeepage"><i class="fa fa-home pull-right"></i></a></h3>
 
-    {{ form.name(class_ = 'form-control first-input', placeholder = form.name.label.text, required = true, autofocus = true) }}</br>
+    {{ form.name(class_ = 'form-control first-input', placeholder = form..label.text, required = true, autofocus = true) }}</br>
     {{ form.email(class_ = 'form-control', placeholder = form.email.label.text, required = true) }}</br>
     {{ form.password(class_ = 'form-control', placeholder = form.password.label.text, required = true) }}</br>
     {{ form.confirm(class_ = 'form-control', placeholder = form.confirm.label.text, required = true) }}</br>

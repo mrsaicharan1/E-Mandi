@@ -1,4 +1,4 @@
-from flask import Flask,Blueprint,render_template,request,redirect,session,url_for,abort
+from flask import Flask,flash,Blueprint,render_template,request,redirect,session,url_for,abort
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 import logging
@@ -8,14 +8,19 @@ import os
 from models import *
 import bcrypt
 from werkzeug import secure_filename, FileStorage
+from flask_uploads import UploadSet,configure_uploads, IMAGES
 
 app = Flask(__name__)
-app.config.from_object('config') # specify database file path
+
+photos = UploadSet('photos',IMAGES)
+
+app.config.from_object('config') # link config.py to this file(with all databse file paths, image upload paths)
+
+configure_uploads(app,photos)
+
 db = SQLAlchemy(app)
 bootstrap=Bootstrap(app)
 
-photos = UploadSet('photos', IMAGES)
-configure_uploads(app, photos) 
 
 
 @app.route('/')
@@ -78,18 +83,18 @@ def product():
 def checkout():
     return render_template('pages/checkout.html')    
 
-# Vegetable Upload routes
+# Vegetable Upload routes-----------------
+
+
+
+
 
 @app.route('/upload', methods=['GET','POST'])
 def upload():
     form = WUploadForm()
-
-    if request.method == 'POST':
-        filename = photos.save(form.upload.data)
-        file_url = photos.url(filename)
-        return render_template('index.html',file_url=file_url)
-    #else:
-        #file_url = None
+    if request.method == 'POST' and 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        return filename
 
     return render_template('forms/wholeseller-upload.html', form=form)
 

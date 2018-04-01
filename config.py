@@ -10,8 +10,8 @@ DEBUG = True
 # https://randomkeygen.com/
 SECRET_KEY = 'my precious'
 
-# Connect to the database
-SQLALCHEMY_DATABASE_URI = 'sqlite:////home/saicharan/Desktop/E-mandi/user.db'
+# Connect to the database(relative path)
+SQLALCHEMY_DATABASE_URI = 'sqlite:///user.db' 
 
 # upload photos
-UPLOADED_PHOTOS_DEST = os.getcwd()
+UPLOADED_PHOTOS_DEST = 'static/img'

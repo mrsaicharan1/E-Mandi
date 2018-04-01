@@ -7,12 +7,15 @@ from forms import *
 import os
 from models import *
 import bcrypt
+from werkzeug import secure_filename, FileStorage
 
 app = Flask(__name__)
-app.config.from_object('config') #specify database file path
+app.config.from_object('config') # specify database file path
 db = SQLAlchemy(app)
 bootstrap=Bootstrap(app)
 
+photos = UploadSet('photos', IMAGES)
+configure_uploads(app, photos) 
 
 
 @app.route('/')
@@ -36,9 +39,9 @@ def login():
         if user:
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
-                return 'Login Successful'
+                return render_template('pages/index.html')
             else:
-                user = None
+                user = not_found_error
         if not user:
             error = 'Incorrect credentials'
     return render_template('forms/login.html', form=form, error=error)	
@@ -55,7 +58,8 @@ def register():
         db.session.add(data)
 	db.session.commit()
         return 'User registered'
-    return render_template('forms/register.html',form=form)
+    if request.method == 'GET':
+        return render_template('forms/register.html',form=form)
 
 
 
@@ -65,6 +69,35 @@ def register():
 def forgot():
     form = ForgotForm()
     return render_template('forms/forgot.html', form=form)
+
+@app.route('/product')
+def product():
+    return render_template('pages/product.html')
+
+@app.route('/checkout.html')
+def checkout():
+    return render_template('pages/checkout.html')    
+
+# Vegetable Upload routes
+
+@app.route('/upload', methods=['GET','POST'])
+def upload():
+    form = WUploadForm()
+
+    if request.method == 'POST':
+        filename = photos.save(form.upload.data)
+        file_url = photos.url(filename)
+        return render_template('index.html',file_url=file_url)
+    #else:
+        #file_url = None
+
+    return render_template('forms/wholeseller-upload.html', form=form)
+
+    
+
+
+
+
 
 # Error handlers.
 

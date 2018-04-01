@@ -1,19 +1,12 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html lang="zxx">
-
+{% block head %}
 <head>
-	<title>Grocery Shoppy an Ecommerce Category Bootstrap Responsive Web Template | Checkout :: w3layouts</title>
+	{% block title %}<title>E-mandi</title>{% endblock %}
 	<!--/tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<meta name="keywords" content="Grocery Shoppy"/>
 	<script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -22,19 +15,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar() {
 			window.scrollTo(0, 1);
 		}
-	</script>
+	</script> 
 	<!--//tags -->
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="css/font-awesome.css" rel="stylesheet">
+	<link href="{{url_for('static',filename='css/shopcss/bootstrap.css')}}" type="text/css" media="all" />
+	<link href="{{url_for('static',filename='css/shopcss/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{url_for('static',filename='css/shopcss/font-awesome.css')}}" rel="stylesheet" />
 	<!--pop-up-box-->
-	<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{url_for('static',filename='css/shopcss/popuo-box.css')}}" rel="stylesheet" type="text/css" media="all" />
 	<!--//pop-up-box-->
 	<!-- price range -->
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
+	<link href="{{url_for('static',filename='css/shopcss/jquery-ui.css')}}" rel="stylesheet" type="text/css" />
 	<!-- fonts -->
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
+{% endblock %}
 
 <body>
 	<!-- top-header -->
@@ -624,50 +618,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="col-sm-4 multi-gd-img">
 												<ul class="multi-column-dropdown">
 													<li>
-														<a href="product.html">Bakery</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Bakery</a>
 													</li>
 													<li>
-														<a href="product.html">Baking Supplies</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Baking Supplies</a>
 													</li>
 													<li>
-														<a href="product.html">Coffee, Tea & Beverages</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Coffee, Tea & Beverages</a>
 													</li>
 													<li>
-														<a href="product.html">Dried Fruits, Nuts</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Dried Fruits, Nuts</a>
 													</li>
 													<li>
-														<a href="product.html">Sweets, Chocolate</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Sweets, Chocolate</a>
 													</li>
 													<li>
-														<a href="product.html">Spices & Masalas</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Spices & Masalas</a>
 													</li>
 													<li>
-														<a href="product.html">Jams, Honey & Spreads</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Jams, Honey & Spreads</a>
 													</li>
 												</ul>
 											</div>
 											<div class="col-sm-4 multi-gd-img">
 												<ul class="multi-column-dropdown">
 													<li>
-														<a href="product.html">Pickles</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Pickles</a>
 													</li>
 													<li>
-														<a href="product.html">Pasta & Noodles</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Pasta & Noodles</a>
 													</li>
 													<li>
-														<a href="product.html">Rice, Flour & Pulses</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Rice, Flour & Pulses</a>
 													</li>
 													<li>
-														<a href="product.html">Sauces & Cooking Pastes</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Sauces & Cooking Pastes</a>
 													</li>
 													<li>
-														<a href="product.html">Snack Foods</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Snack Foods</a>
 													</li>
 													<li>
-														<a href="product.html">Oils, Vinegars</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Oils, Vinegars</a>
 													</li>
 													<li>
-														<a href="product.html">Meat, Poultry & Seafood</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Meat, Poultry & Seafood</a>
 													</li>
 												</ul>
 											</div>
@@ -687,50 +681,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="col-sm-6 multi-gd-img">
 												<ul class="multi-column-dropdown">
 													<li>
-														<a href="product2.html">Kitchen & Dining</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Kitchen & Dining</a>
 													</li>
 													<li>
-														<a href="product2.html">Detergents</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Detergents</a>
 													</li>
 													<li>
-														<a href="product2.html">Utensil Cleaners</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Utensil Cleaners</a>
 													</li>
 													<li>
-														<a href="product2.html">Floor & Other Cleaners</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Floor & Other Cleaners</a>
 													</li>
 													<li>
-														<a href="product2.html">Disposables, Garbage Bag</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Disposables, Garbage Bag</a>
 													</li>
 													<li>
-														<a href="product2.html">Repellents & Fresheners</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Repellents & Fresheners</a>
 													</li>
 													<li>
-														<a href="product2.html"> Dishwash</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}"> Dishwash</a>
 													</li>
 												</ul>
 											</div>
 											<div class="col-sm-6 multi-gd-img">
 												<ul class="multi-column-dropdown">
 													<li>
-														<a href="product2.html">Pet Care</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Pet Care</a>
 													</li>
 													<li>
-														<a href="product2.html">Cleaning Accessories</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Cleaning Accessories</a>
 													</li>
 													<li>
-														<a href="product2.html">Pooja Needs</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Pooja Needs</a>
 													</li>
 													<li>
-														<a href="product2.html">Crackers</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Crackers</a>
 													</li>
 													<li>
-														<a href="product2.html">Festive Decoratives</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Festive Decoratives</a>
 													</li>
 													<li>
-														<a href="product2.html">Plasticware</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Plasticware</a>
 													</li>
 													<li>
-														<a href="product2.html">Home Care</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Home Care</a>
 													</li>
 												</ul>
 											</div>
@@ -1019,44 +1013,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h3>Categories</h3>
 						<ul>
 							<li>
-								<a href="product.html">Grocery</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Grocery</a>
 							</li>
 							<li>
-								<a href="product.html">Fruits</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Fruits</a>
 							</li>
 							<li>
-								<a href="product.html">Soft Drinks</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Soft Drinks</a>
 							</li>
 							<li>
-								<a href="product2.html">Dishwashers</a>
+								<a href="{{url_for('static',filename='pages/product2.html')}}">Dishwashers</a>
 							</li>
 							<li>
-								<a href="product.html">Biscuits & Cookies</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Biscuits & Cookies</a>
 							</li>
 							<li>
-								<a href="product2.html">Baby Diapers</a>
+								<a href="{{url_for('static',filename='pages/product2.html')}}">Baby Diapers</a>
 							</li>
 						</ul>
 					</div>
 					<div class="col-xs-6 footer-grids agile-secomk">
 						<ul>
 							<li>
-								<a href="product.html">Snacks & Beverages</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Snacks & Beverages</a>
 							</li>
 							<li>
-								<a href="product.html">Bread & Bakery</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Bread & Bakery</a>
 							</li>
 							<li>
-								<a href="product.html">Sweets</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Sweets</a>
 							</li>
 							<li>
-								<a href="product.html">Chocolates & Biscuits</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Chocolates & Biscuits</a>
 							</li>
 							<li>
-								<a href="product2.html">Personal Care</a>
+								<a href="{{url_for('static',filename='pages/product2.html')}}">Personal Care</a>
 							</li>
 							<li>
-								<a href="product.html">Dried Fruits & Nuts</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Dried Fruits & Nuts</a>
 							</li>
 						</ul>
 					</div>
@@ -1160,106 +1154,106 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h5>Popular Brands</h5>
 					<ul>
 						<li>
-							<a href="product.html">Aashirvaad</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Aashirvaad</a>
 						</li>
 						<li>
-							<a href="product.html">Amul</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Amul</a>
 						</li>
 						<li>
-							<a href="product.html">Bingo</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Bingo</a>
 						</li>
 						<li>
-							<a href="product.html">Boost</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Boost</a>
 						</li>
 						<li>
-							<a href="product.html">Durex</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Durex</a>
 						</li>
 						<li>
-							<a href="product.html"> Maggi</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}"> Maggi</a>
 						</li>
 						<li>
-							<a href="product.html">Glucon-D</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Glucon-D</a>
 						</li>
 						<li>
-							<a href="product.html">Horlicks</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Horlicks</a>
 						</li>
 						<li>
-							<a href="product2.html">Head & Shoulders</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Head & Shoulders</a>
 						</li>
 						<li>
-							<a href="product2.html">Dove</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Dove</a>
 						</li>
 						<li>
-							<a href="product2.html">Dettol</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Dettol</a>
 						</li>
 						<li>
-							<a href="product2.html">Dabur</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Dabur</a>
 						</li>
 						<li>
-							<a href="product2.html">Colgate</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Colgate</a>
 						</li>
 						<li>
-							<a href="product.html">Coca-Cola</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Coca-Cola</a>
 						</li>
 						<li>
-							<a href="product2.html">Closeup</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Closeup</a>
 						</li>
 						<li>
-							<a href="product2.html"> Cinthol</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}"> Cinthol</a>
 						</li>
 						<li>
-							<a href="product.html">Cadbury</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Cadbury</a>
 						</li>
 						<li>
-							<a href="product.html">Bru</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Bru</a>
 						</li>
 						<li>
-							<a href="product.html">Bournvita</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Bournvita</a>
 						</li>
 						<li>
-							<a href="product.html">Tang</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Tang</a>
 						</li>
 						<li>
-							<a href="product.html">Pears</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Pears</a>
 						</li>
 						<li>
-							<a href="product.html">Oreo</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Oreo</a>
 						</li>
 						<li>
-							<a href="product.html"> Taj Mahal</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}"> Taj Mahal</a>
 						</li>
 						<li>
-							<a href="product.html">Sprite</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Sprite</a>
 						</li>
 						<li>
-							<a href="product.html">Thums Up</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Thums Up</a>
 						</li>
 						<li>
-							<a href="product2.html">Fair & Lovely</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Fair & Lovely</a>
 						</li>
 						<li>
-							<a href="product2.html">Lakme</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Lakme</a>
 						</li>
 						<li>
-							<a href="product.html">Tata</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Tata</a>
 						</li>
 						<li>
-							<a href="product2.html">Sunfeast</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Sunfeast</a>
 						</li>
 						<li>
-							<a href="product2.html">Sunsilk</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Sunsilk</a>
 						</li>
 						<li>
-							<a href="product.html">Patanjali</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Patanjali</a>
 						</li>
 						<li>
-							<a href="product.html">MTR</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">MTR</a>
 						</li>
 						<li>
-							<a href="product.html">Kissan</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Kissan</a>
 						</li>
 						<li>
-							<a href="product2.html"> Lipton</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}"> Lipton</a>
 						</li>
 					</ul>
 				</div>

@@ -1,0 +1,13 @@
+{% extends 'layouts/form.html' %}
+{% block title %}Wholeseller Item-Upload Form{% endblock %}
+{% block content %}
+  <form method="POST" action="{{ url_for('upload') }}" role="form">
+    <h3 class="form-heading">Wholeseller Item Upload<a href="{{ url_for('home') }}" title="Back to homeepage"><i class="fa fa-home pull-right"></i></a></h3>
+
+    {{ form.WholeSellerName(class_ = 'form-control first-input', placeholder = form.WholeSellerName.label.text, required = true, autofocus = true) }}</br>
+    {{ form.VegerableName(class_ = 'form-control', placeholder = form.VegetableName.label.text, required = true) }}</br>
+    {{ form.Price(class_ = 'form-control', placeholder = form.Price.label.text, required = true) }}</br>
+    
+    <input type="submit" value="Upload" class="btn btn-primary btn-lg btn-block">
+    </form>
+{% endblock %}

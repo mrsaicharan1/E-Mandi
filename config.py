@@ -12,3 +12,6 @@ SECRET_KEY = 'my precious'
 
 # Connect to the database
 SQLALCHEMY_DATABASE_URI = 'sqlite:////home/saicharan/Desktop/E-mandi/user.db'
+
+# upload photos
+UPLOADED_PHOTOS_DEST = os.getcwd()

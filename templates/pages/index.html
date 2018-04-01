@@ -31,10 +31,17 @@
 </head>
 {% endblock %}
 
+{% block body %}
 <body>
 	<!-- top-header -->
 	<div class="header-most-top">
 		<p>Grocery Offer Zone Top Deals & Discounts</p>
+	 {% if file_url %}
+     
+     <br>
+     <img src="{{ file_url }}">
+     {% endif %}
+	
 	</div>
 	<!-- //top-header -->
 	<!-- header-bot-->
@@ -52,19 +59,7 @@
 			<!-- header-bot -->
 			<div class="col-md-8 header">
 				<!-- header lists -->
-				<ul>
-					<li>
-						<a class="play-icon popup-with-zoom-anim" href="#small-dialog1">
-							<span class="fa fa-map-marker" aria-hidden="true"></span> Shop Locator</a>
-					</li>
-					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal1">
-							<span class="fa fa-truck" aria-hidden="true"></span>Track Order</a>
-					</li>
-					<li>
-						<span class="fa fa-phone" aria-hidden="true"></span> 001 234 5678
-					</li>
-				</ul>
+
 				<!-- //header lists -->
 				<!-- search -->
 				<div class="agileits_search">
@@ -485,24 +480,22 @@
 					<div class="main-mailposi">
 						<span class="fa fa-envelope-o" aria-hidden="true"></span>
 					</div>
-					<div class="modal_body_left modal_body_left1">
-						<h3 class="agileinfo_sign">Sign In </h3>
+					
+						{% if session %}
+						<h3 class="agileinfo_sign">Signed in as {{ session['name'] }}</h3>	
+						{% else %}
+						<div class="modal_body_left modal_body_left1">
 						<p>
+							<h3 class="agileinfo_sign">Sign In </h3>
 							Sign In now, Let's start your Grocery Shopping. Don't have an account?
 							<a href="#" data-toggle="modal" data-target="#myModal2">
 								Sign Up Now</a>
-						</p>
-						<form action="#" method="post">
-							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="User Name" name="Name" required="">
-							</div>
-							<div class="styled-input">
-								<input type="password" placeholder="Password" name="password" required="">
-							</div>
-							<input type="submit" value="Sign In">
-						</form>
-						<div class="clearfix"></div>
+						    <div class="clearfix"></div>
 					</div>
+						</p>						
+						{% endif %}
+
+						
 					<div class="clearfix"></div>
 				</div>
 			</div>
@@ -569,50 +562,50 @@
 											<div class="col-sm-4 multi-gd-img">
 												<ul class="multi-column-dropdown">
 													<li>
-														<a href="product.html">Bakery</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Bakery</a>
 													</li>
 													<li>
-														<a href="product.html">Baking Supplies</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Baking Supplies</a>
 													</li>
 													<li>
-														<a href="product.html">Coffee, Tea & Beverages</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Coffee, Tea & Beverages</a>
 													</li>
 													<li>
-														<a href="product.html">Dried Fruits, Nuts</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Dried Fruits, Nuts</a>
 													</li>
 													<li>
-														<a href="product.html">Sweets, Chocolate</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Sweets, Chocolate</a>
 													</li>
 													<li>
-														<a href="product.html">Spices & Masalas</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Spices & Masalas</a>
 													</li>
 													<li>
-														<a href="product.html">Jams, Honey & Spreads</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Jams, Honey & Spreads</a>
 													</li>
 												</ul>
 											</div>
 											<div class="col-sm-4 multi-gd-img">
 												<ul class="multi-column-dropdown">
 													<li>
-														<a href="product.html">Pickles</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Pickles</a>
 													</li>
 													<li>
-														<a href="product.html">Pasta & Noodles</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Pasta & Noodles</a>
 													</li>
 													<li>
-														<a href="product.html">Rice, Flour & Pulses</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Rice, Flour & Pulses</a>
 													</li>
 													<li>
-														<a href="product.html">Sauces & Cooking Pastes</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Sauces & Cooking Pastes</a>
 													</li>
 													<li>
-														<a href="product.html">Snack Foods</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Snack Foods</a>
 													</li>
 													<li>
-														<a href="product.html">Oils, Vinegars</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Oils, Vinegars</a>
 													</li>
 													<li>
-														<a href="product.html">Meat, Poultry & Seafood</a>
+														<a href="{{url_for('static',filename='pages/product.html')}}">Meat, Poultry & Seafood</a>
 													</li>
 												</ul>
 											</div>
@@ -632,50 +625,50 @@
 											<div class="col-sm-6 multi-gd-img">
 												<ul class="multi-column-dropdown">
 													<li>
-														<a href="product2.html">Kitchen & Dining</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Kitchen & Dining</a>
 													</li>
 													<li>
-														<a href="product2.html">Detergents</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Detergents</a>
 													</li>
 													<li>
-														<a href="product2.html">Utensil Cleaners</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Utensil Cleaners</a>
 													</li>
 													<li>
-														<a href="product2.html">Floor & Other Cleaners</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Floor & Other Cleaners</a>
 													</li>
 													<li>
-														<a href="product2.html">Disposables, Garbage Bag</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Disposables, Garbage Bag</a>
 													</li>
 													<li>
-														<a href="product2.html">Repellents & Fresheners</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Repellents & Fresheners</a>
 													</li>
 													<li>
-														<a href="product2.html"> Dishwash</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}"> Dishwash</a>
 													</li>
 												</ul>
 											</div>
 											<div class="col-sm-6 multi-gd-img">
 												<ul class="multi-column-dropdown">
 													<li>
-														<a href="product2.html">Pet Care</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Pet Care</a>
 													</li>
 													<li>
-														<a href="product2.html">Cleaning Accessories</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Cleaning Accessories</a>
 													</li>
 													<li>
-														<a href="product2.html">Pooja Needs</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Pooja Needs</a>
 													</li>
 													<li>
-														<a href="product2.html">Crackers</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Crackers</a>
 													</li>
 													<li>
-														<a href="product2.html">Festive Decoratives</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Festive Decoratives</a>
 													</li>
 													<li>
-														<a href="product2.html">Plasticware</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Plasticware</a>
 													</li>
 													<li>
-														<a href="product2.html">Home Care</a>
+														<a href="{{url_for('static',filename='pages/product2.html')}}">Home Care</a>
 													</li>
 												</ul>
 											</div>
@@ -728,7 +721,7 @@
 						</h3>
 						<p>Get flat
 							<span>10%</span> Cashback</p>
-						<a class="button2" href="product.html">Shop Now </a>
+						<a class="button2" href="{{url_for('static',filename='pages/product.html')}}">Shop Now </a>
 					</div>
 				</div>
 			</div>
@@ -740,7 +733,7 @@
 						</h3>
 						<p>Get Upto
 							<span>30%</span> Off</p>
-						<a class="button2" href="product.html">Shop Now </a>
+						<a class="button2" href="{{url_for('static',filename='pages/product.html')}}">Shop Now </a>
 					</div>
 				</div>
 			</div>
@@ -753,7 +746,7 @@
 						<p>Get Best Offer Upto
 							<span>20%</span>
 						</p>
-						<a class="button2" href="product.html">Shop Now </a>
+						<a class="button2" href="{{url_for('static',filename='pages/product.html')}}">Shop Now </a>
 					</div>
 				</div>
 			</div>
@@ -765,7 +758,7 @@
 						</h3>
 						<p>Get Now
 							<span>40%</span> Discount</p>
-						<a class="button2" href="product.html">Shop Now </a>
+						<a class="button2" href="{{url_for('static',filename='pages/product.html')}}">Shop Now </a>
 					</div>
 				</div>
 			</div>
@@ -1780,44 +1773,44 @@
 						<h3>Categories</h3>
 						<ul>
 							<li>
-								<a href="product.html">Grocery</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Grocery</a>
 							</li>
 							<li>
-								<a href="product.html">Fruits</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Fruits</a>
 							</li>
 							<li>
-								<a href="product.html">Soft Drinks</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Soft Drinks</a>
 							</li>
 							<li>
-								<a href="product2.html">Dishwashers</a>
+								<a href="{{url_for('static',filename='pages/product2.html')}}">Dishwashers</a>
 							</li>
 							<li>
-								<a href="product.html">Biscuits & Cookies</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Biscuits & Cookies</a>
 							</li>
 							<li>
-								<a href="product2.html">Baby Diapers</a>
+								<a href="{{url_for('static',filename='pages/product2.html')}}">Baby Diapers</a>
 							</li>
 						</ul>
 					</div>
 					<div class="col-xs-6 footer-grids agile-secomk">
 						<ul>
 							<li>
-								<a href="product.html">Snacks & Beverages</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Snacks & Beverages</a>
 							</li>
 							<li>
-								<a href="product.html">Bread & Bakery</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Bread & Bakery</a>
 							</li>
 							<li>
-								<a href="product.html">Sweets</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Sweets</a>
 							</li>
 							<li>
-								<a href="product.html">Chocolates & Biscuits</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Chocolates & Biscuits</a>
 							</li>
 							<li>
-								<a href="product2.html">Personal Care</a>
+								<a href="{{url_for('static',filename='pages/product2.html')}}">Personal Care</a>
 							</li>
 							<li>
-								<a href="product.html">Dried Fruits & Nuts</a>
+								<a href="{{url_for('static',filename='pages/product.html')}}">Dried Fruits & Nuts</a>
 							</li>
 						</ul>
 					</div>
@@ -1921,106 +1914,106 @@
 					<h5>Popular Brands</h5>
 					<ul>
 						<li>
-							<a href="product.html">Aashirvaad</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Aashirvaad</a>
 						</li>
 						<li>
-							<a href="product.html">Amul</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Amul</a>
 						</li>
 						<li>
-							<a href="product.html">Bingo</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Bingo</a>
 						</li>
 						<li>
-							<a href="product.html">Boost</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Boost</a>
 						</li>
 						<li>
-							<a href="product.html">Durex</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Durex</a>
 						</li>
 						<li>
-							<a href="product.html"> Maggi</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}"> Maggi</a>
 						</li>
 						<li>
-							<a href="product.html">Glucon-D</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Glucon-D</a>
 						</li>
 						<li>
-							<a href="product.html">Horlicks</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Horlicks</a>
 						</li>
 						<li>
-							<a href="product2.html">Head & Shoulders</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Head & Shoulders</a>
 						</li>
 						<li>
-							<a href="product2.html">Dove</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Dove</a>
 						</li>
 						<li>
-							<a href="product2.html">Dettol</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Dettol</a>
 						</li>
 						<li>
-							<a href="product2.html">Dabur</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Dabur</a>
 						</li>
 						<li>
-							<a href="product2.html">Colgate</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Colgate</a>
 						</li>
 						<li>
-							<a href="product.html">Coca-Cola</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Coca-Cola</a>
 						</li>
 						<li>
-							<a href="product2.html">Closeup</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Closeup</a>
 						</li>
 						<li>
-							<a href="product2.html"> Cinthol</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}"> Cinthol</a>
 						</li>
 						<li>
-							<a href="product.html">Cadbury</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Cadbury</a>
 						</li>
 						<li>
-							<a href="product.html">Bru</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Bru</a>
 						</li>
 						<li>
-							<a href="product.html">Bournvita</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Bournvita</a>
 						</li>
 						<li>
-							<a href="product.html">Tang</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Tang</a>
 						</li>
 						<li>
-							<a href="product.html">Pears</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Pears</a>
 						</li>
 						<li>
-							<a href="product.html">Oreo</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Oreo</a>
 						</li>
 						<li>
-							<a href="product.html"> Taj Mahal</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}"> Taj Mahal</a>
 						</li>
 						<li>
-							<a href="product.html">Sprite</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Sprite</a>
 						</li>
 						<li>
-							<a href="product.html">Thums Up</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Thums Up</a>
 						</li>
 						<li>
-							<a href="product2.html">Fair & Lovely</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Fair & Lovely</a>
 						</li>
 						<li>
-							<a href="product2.html">Lakme</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Lakme</a>
 						</li>
 						<li>
-							<a href="product.html">Tata</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Tata</a>
 						</li>
 						<li>
-							<a href="product2.html">Sunfeast</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Sunfeast</a>
 						</li>
 						<li>
-							<a href="product2.html">Sunsilk</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}">Sunsilk</a>
 						</li>
 						<li>
-							<a href="product.html">Patanjali</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Patanjali</a>
 						</li>
 						<li>
-							<a href="product.html">MTR</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">MTR</a>
 						</li>
 						<li>
-							<a href="product.html">Kissan</a>
+							<a href="{{url_for('static',filename='pages/product.html')}}">Kissan</a>
 						</li>
 						<li>
-							<a href="product2.html"> Lipton</a>
+							<a href="{{url_for('static',filename='pages/product2.html')}}"> Lipton</a>
 						</li>
 					</ul>
 				</div>
@@ -2075,11 +2068,11 @@
 
 	<!-- js-files -->
 	<!-- jquery -->
-	<script src="/static/js/shopjs/jquery-2.1.4.min.js"></script>
+	<script src="{{url_for('static',filename='js/shopjs/jquery-2.1.4.min.js')}}"></script>
 	<!-- //jquery -->
 
 	<!-- popup modal (for signin & signup)-->
-	<script src="/static/js/shopjs/jquery.magnific-popup.js"></script>
+	<script src="{{url_for('static',filename='js/shopjs/jquery.magnific-popup.js')}}"></script>
 	<script>
 		$(document).ready(function () {
 			$('.popup-with-zoom-anim').magnificPopup({
@@ -2103,7 +2096,7 @@
 	<!-- //popup modal (for signin & signup)-->
 
 	<!-- cart-js -->
-	<script src="/static/js/shopjs/minicart.js"></script>
+	<script src="{{url_for('static',filename='js/shopjs/minicart.js')}}"></script>
 	<script>
 		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
 
@@ -2127,7 +2120,7 @@
 	<!-- //cart-js -->
 
 	<!-- price range (top products) -->
-	<script src="/static/js/shopjs/jquery-ui.js"></script>
+	<script src="{{url_for('static',filename='js/shopjs/jquery-ui.js')}}"></script>
 	<script>
 		//<![CDATA[ 
 		$(window).load(function () {
@@ -2147,7 +2140,7 @@
 	<!-- //price range (top products) -->
 
 	<!-- flexisel (for special offers) -->
-	<script src="/static/js/shopjs/jquery.flexisel.js"></script>
+	<script src="{{url_for('static',filename='js/shopjs/jquery.flexisel.js')}}"></script>
 	<script>
 		$(window).load(function () {
 			$("#flexiselDemo1").flexisel({
@@ -2197,12 +2190,12 @@
 	<!-- //password-script -->
 
 	<!-- smoothscroll -->
-	<script src="/static/js/shopjs/SmoothScroll.min.js"></script>
+	<script src="{{url_for('static',filename='js/shopjs/SmoothScroll.min.js')}}"></script>
 	<!-- //smoothscroll -->
 
 	<!-- start-smooth-scrolling -->
-	<script src="/static/js/shopjs/move-top.js"></script>
-	<script src="/static/js/shopjs/easing.js"></script>
+	<script src="{{url_for('static',filename='js/shopjs/move-top.js')}}"></script>
+	<script src="{{url_for('static',filename='js/shopjs/easing.js')}}"></script>
 	<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -2236,11 +2229,13 @@
 	<!-- //smooth-scrolling-of-move-up -->
 
 	<!-- for bootstrap working -->
-	<script src="/static/js/shopjs/bootstrap.js"></script>
+	<script src="{{url_for('static',filename='js/shopjs/bootstrap.js')}}"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
 
 
 </body>
+{% endblock %}
+
 
 </html>

@@ -1,6 +1,9 @@
 from flask_wtf import Form
-from wtforms import TextField, PasswordField
+from wtforms import TextField, PasswordField,FileField,DecimalField
+from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 from wtforms.validators import DataRequired, EqualTo, Length
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+from werkzeug.utils import secure_filename
 
 
 class RegisterForm(Form):
@@ -25,6 +28,8 @@ class RegisterForm(Form):
     user_type = TextField(
     'user_type', validators=[DataRequired(), Length(min=6, max=40)]
     ) 
+    
+    #upload = FileField('image', validators=[FileAllowed(['jpg'],'Upload your shitty face')])
 
 
 
@@ -37,3 +42,25 @@ class ForgotForm(Form):
     email = TextField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
+
+class WUploadForm(Form):
+    
+    WholeSellerName = ('WholeSeller Name',[DataRequired()])
+
+    VegetableName = TextField(
+        'Veggies', validators=[DataRequired(), Length(min=6, max=40)]
+    ) 
+    
+    Price = DecimalField('Price per Kilo',[DataRequired()])
+
+    upload = FileField('image', validators=[FileAllowed(['jpg'],'Upload your veggies')])
+
+class RUploadForm(Form):
+
+    RetailerName = TextField('Retailer Name', [DataRequired()])
+
+    VegetableName = TextField('VegetableName',validators=[DataRequired(), Length(min=6, max=40)])
+    
+    Price =DecimalField('Price per Kilo',[DataRequired()])
+
+    upload = FileField('image', validators=[FileAllowed(['jpg'],'Upload your veggies')])

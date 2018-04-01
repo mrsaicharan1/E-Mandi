@@ -37,8 +37,6 @@
 	<div class="header-most-top">
 		<p>Grocery Offer Zone Top Deals & Discounts</p>
 	
-	<!-- Space for vegetable items -->
-	
 	</div>
 	<!-- //top-header -->
 	<!-- header-bot-->
@@ -479,7 +477,11 @@
 					</div>
 					
 						{% if session %}
-						<h3 class="agileinfo_sign">Signed in as {{ session['name'] }}</h3>	
+						<h3 class="agileinfo_sign">Signed in as {{ session['name'] }} ({{ user_type }})</h3><br>
+						{% if user.user_type=='wholeseller' %}
+						<button type="button" action="{{ url_for('w_upload') }}" class="btn btn-success btn-block">Add new items as {{ user_type }}</button>
+						{% if user.user_type=='wholeseller' %}
+						<button type="button" action="{{ url_for('r_upload') }}" class="btn btn-success btn-block">Add new items as {{ user_type }}</button>	
 						{% else %}
 						<div class="modal_body_left modal_body_left1">
 						<p>

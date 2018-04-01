@@ -51,14 +51,4 @@ class WUploadForm(Form):
     
     Price = DecimalField('Price per Kilo',[DataRequired()])
 
-    upload = FileField('image', validators=[FileAllowed(['jpg'],'Upload your veggies')])
-    
-class RUploadForm(Form):
-
-    RetailerName = TextField('Retailer Name', [DataRequired()])
-
-    VegetableName = TextField('VegetableName',validators=[DataRequired(), Length(min=6, max=40)])
-    
-    Price =DecimalField('Price per Kilo',[DataRequired()])
-
-    upload = FileField('image', validators=[FileAllowed(['jpg'],'Upload your veggies')])
+    #upload = FileField('image', validators=[FileAllowed(['jpg'],'Upload your veggies')])

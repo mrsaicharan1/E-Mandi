@@ -2,7 +2,7 @@
 {% block title %}Wholeseller Item-Upload Form{% endblock %}
 {% block content %}
 
-  <form method=POST action="{{ url_for('upload') }}" enctype=multipart/form-data >
+  <form method=POST action="{{ url_for('w_upload') }}" enctype=multipart/form-data >
     <h3 class="form-heading">Wholeseller Item Upload<a href="{{ url_for('home') }}" title="Back to homeepage"><i class="fa fa-home pull-right"></i></a></h3>
 
     {{ form.VegetableName(class_ = 'form-control first-input' ,placeholder = "Vegetable", required = true) }}</br>

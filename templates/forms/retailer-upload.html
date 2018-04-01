@@ -1,9 +1,9 @@
 {% extends 'layouts/form.html' %}
-{% block title %}Who Item-Upload Form{% endblock %}
+{% block title %}Retailers Item-Upload Form{% endblock %}
 {% block content %}
 
   <form method=POST action="{{ url_for('upload') }}" enctype=multipart/form-data >
-    <h3 class="form-heading">Wholeseller Item Upload<a href="{{ url_for('home') }}" title="Back to homeepage"><i class="fa fa-home pull-right"></i></a></h3>
+    <h3 class="form-heading">Retailer's Item Upload<a href="{{ url_for('home') }}" title="Back to homeepage"><i class="fa fa-home pull-right"></i></a></h3>
 
     {{ form.VegetableName(class_ = 'form-control first-input' ,placeholder = "Vegetable", required = true) }}</br>
     {{ form.Price(class_ = 'form-control', placeholder= "Price", required = true) }}</br>

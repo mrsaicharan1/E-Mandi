@@ -41,12 +41,28 @@ def login():
     
     if request.method == 'POST':
         user = User.query.filter_by(name=form.name.data).first()
-        if user:
+        # customer login
+        if user and user.user_type == 'customer' :
+            kind = user.user_type 
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
-                return render_template('pages/index.html')
-            else:
-                user = not_found_error
+                return render_template('pages/index.html',user_type=kind)
+
+        # retailer login
+        if user and user.user_type == 'retailer' :
+            kind = user.user_type 
+            if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
+                session['name'] = form.name.data
+                return render_template('pages/index.html',user_type=kind) 
+        # wholeseller login        
+        if user and user.user_type == 'wholeseller' :
+            kind = user.user_type    
+            if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
+                session['name'] = form.name.data
+                return render_template('pages/index.html',user_type=kind) 
+        else:
+            user = not_found_error
+
         if not user:
             error = 'Incorrect credentials'
     return render_template('forms/login.html', form=form, error=error)	
@@ -62,7 +78,7 @@ def register():
         data = User(form.name.data, form.email.data, hashed_password, form.user_type.data)
         db.session.add(data)
 	db.session.commit()
-        return 'User registered'
+        return redirect(url_for('login'))
     if request.method == 'GET':
         return render_template('forms/register.html',form=form)
 
@@ -89,16 +105,25 @@ def checkout():
 
 
 
-@app.route('/upload', methods=['GET','POST'])
-def upload():
-    form = WUploadForm()
+@app.route('/w_upload', methods=['GET','POST'])
+def w_upload():
+    form = UploadForm()
     if request.method == 'POST' and 'photo' in request.files:
         filename = photos.save(request.files['photo'])
-        return filename
+        return render_template('index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data)
 
     return render_template('forms/wholeseller-upload.html', form=form)
 
+@app.route('/r_upload', methods=['GET','POST'])
+def r_upload():
+    form = UploadForm()
+    if request.method == 'POST' and 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        return render_template('index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data)
+
+    return render_template('forms/retailer-upload.html', form=form)
     
+
 
 
 

@@ -1,6 +1,5 @@
 # Normalise tables upto 3NF(Theory)
 # Get the links working for shopping cart,forgot,about etc.
-# Design and link transaction database
-# Add options for addition of items and price updation by retailer and whole seller.
+# Design and link transaction database.
 # Limit views of wholeseller and retailer
 # Add admin transaction tracking

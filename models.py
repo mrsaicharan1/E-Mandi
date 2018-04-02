@@ -17,7 +17,7 @@ Base.query = db_session.query_property()
 class User(Base):
     __tablename__ = 'Users'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(120), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(30))
@@ -34,11 +34,11 @@ class User(Base):
 class Transaction(Base):
     __tablename__ = 'Transaction'
 
-    id = db.column(db.integer,primary_key=True)
-    user_id = db.column(db.String(10))
-    seller_id = db.column(db.String(10))
+    id = db.Column(db.Integer,primary_key=True)
+    user_id = db.Column(db.String(10))
+    seller_id = db.Column(db.String(10))
     vegetable_id = db.Column(db.String(60))
-    date = db.column(db.Date)
+    date = db.Column(db.Date)
     amount = db.Column(db.Integer)
 
     def __init__(self,user_id,seller_id,vegetable_id,amount):
@@ -50,8 +50,8 @@ class Transaction(Base):
 class Wholeseller(Base):
     __tablename__ = 'Wholeseller'
 
-    id = db.column(db.integer,primary_key=True)
-    wholeseller_name = db.column(db.String(10))
+    id = db.Column(db.Integer,primary_key=True)
+    wholeseller_name = db.Column(db.String(10))
     vegetable_name = db.Column(db.String(60))
     price = db.Column(db.Integer)
 
@@ -63,8 +63,8 @@ class Wholeseller(Base):
 class Retailer(Base):
     __tablename__ = 'Retailer'
 
-    id = db.column(db.integer,primary_key=True)
-    retailer_name = db.column(db.String(10))
+    id = db.Column(db.Integer,primary_key=True)
+    retailer_name = db.Column(db.String(10))
     vegetable_name = db.Column(db.String(60))
     price = db.Column(db.Integer)
 

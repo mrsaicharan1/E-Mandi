@@ -478,10 +478,10 @@
 					
 						{% if session %}
 						<h3 class="agileinfo_sign">Signed in as {{ session['name'] }} ({{ user_type }})</h3><br>
-						{% if user.user_type=='wholeseller' %}
+						{% if user_type=='wholeseller' %}
 						<button type="button" action="{{ url_for('w_upload') }}" class="btn btn-success btn-block">Add new items as {{ user_type }}</button>
-						{% if user.user_type=='wholeseller' %}
-						<button type="button" action="{{ url_for('r_upload') }}" class="btn btn-success btn-block">Add new items as {{ user_type }}</button>	
+						{% elif user_type=='wholeseller' %}
+						<button type="button" action="{{ url_for('r_upload') }}" class="btn btn-success btn-block">Add new items as {{ user_type }}</button>
 						{% else %}
 						<div class="modal_body_left modal_body_left1">
 						<p>
@@ -493,7 +493,7 @@
 					</div>
 						</p>						
 						{% endif %}
-
+						{% endif %}
 						
 					<div class="clearfix"></div>
 				</div>
@@ -1058,6 +1058,7 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="col-md-4 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
@@ -1098,6 +1099,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-md-4 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
@@ -1197,6 +1199,7 @@
 								</div>
 							</div>
 						</div>
+						<!-- INSERT NEW ITEMS HERE -->
 						<div class="col-md-4 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">

@@ -110,6 +110,9 @@ def w_upload():
     form = UploadForm()
     if request.method == 'POST' and 'photo' in request.files:
         filename = photos.save(request.files['photo'])
+        # store in database with transaction id
+        
+        # render in page 
         return render_template('index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data)
 
     return render_template('forms/wholeseller-upload.html', form=form)

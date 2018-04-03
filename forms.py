@@ -43,7 +43,7 @@ class ForgotForm(Form):
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
 
-class WUploadForm(Form):
+class UploadForm(Form):
 
     VegetableName = TextField(
         'Veggies', validators=[DataRequired(), Length(min=6, max=40)]

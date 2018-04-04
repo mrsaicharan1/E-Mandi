@@ -84,8 +84,6 @@ def register():
 
 
 
-
-
 @app.route('/forgot')
 def forgot():
     form = ForgotForm()
@@ -105,6 +103,7 @@ def checkout():
 
 
 
+
 @app.route('/w_upload', methods=['GET','POST'])
 def w_upload():
     form = UploadForm()
@@ -113,7 +112,7 @@ def w_upload():
         # store in database with transaction id
         
         # render in page 
-        return render_template('pages/index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data)
+        return render_template('pages/index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data,filename=filename)
 
     return render_template('forms/wholeseller-upload.html', form=form)
 
@@ -122,7 +121,7 @@ def r_upload():
     form = UploadForm()
     if request.method == 'POST' and 'photo' in request.files:
         filename = photos.save(request.files['photo'])
-        return render_template('pages/index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data)
+        return render_template('pages/index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data,filename=filename)
 
     return render_template('forms/retailer-upload.html', form=form)
     

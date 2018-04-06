@@ -478,12 +478,15 @@
 					
 						{% if session %}
 						<h3 class="agileinfo_sign">Signed in as {{ session['name'] }} ({{ user_type }})</h3><br>
-						{% if user_type=='wholeseller' %}
+						    {% if user_type=='wholeseller' %}
 						<button type="button" action="{{ url_for('w_upload') }}" class="btn btn-success btn-block">Add new items as {{ user_type }}</button>
-						{% elif user_type=='wholeseller' %}
+						     {% elif user_type=='wholeseller' %}
 						<button type="button" action="{{ url_for('r_upload') }}" class="btn btn-success btn-block">Add new items as {{ user_type }}</button>
 						{% else %}
 						<div class="modal_body_left modal_body_left1">
+						{% endif %}					
+						{% endif %}
+						{% if not session %}
 						<p>
 							<h3 class="agileinfo_sign">Sign In </h3>
 							Sign In now, Let's start your Grocery Shopping. Don't have an account?
@@ -491,9 +494,8 @@
 								Sign Up Now</a>
 						    <div class="clearfix"></div>
 					</div>
-						</p>						
-						{% endif %}
-						{% endif %}
+						</p>
+						{% endif %}	
 						
 					<div class="clearfix"></div>
 				</div>
@@ -1200,28 +1202,30 @@
 							</div>
 						</div>
 						<!-- INSERT NEW ITEMS HERE -->
-						<div class="col-md-4 product-men">
+					<div class="col-md-4 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
-									<div id="append-vegetables"></div>
-									<img src="static/img/filename" alt="">
-
+									<img src="/static/img/tomato.jpg" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
 											<a href="pages/single.html" class="link-product-add-cart">Quick View</a>
 										</div>
 									</div>
-									
 									<span class="product-new-top">New</span>
 
 								</div>
 								<div class="item-info-product ">
 									<h4>
-										<a href="pages/single.html">{{ name_vegetable }}</a>
+										<a href="pages/single.html">Tomato</a>
 									</h4>
 									<div class="info-product-price">
-										<span class="item_price">{{ price_vegetable }}</span>
-										<!-- <del>$150.00</del> -->
+										<span class="item_price">
+											<select id="tomato-list">
+												
+													<option value="{{ wholeseller_name}}">{{ vegetable_price }}</option>
+												
+											</select>
+										</span>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										<form action="#" method="post">
@@ -1229,8 +1233,8 @@
 												<input type="hidden" name="cmd" value="_cart" />
 												<input type="hidden" name="add" value="1" />
 												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="{{ name_vegetable }}" />
-												<input type="hidden" name="amount" value="{{ price_vegetable }}" />
+												<input type="hidden" name="item_name" value="Saffola Gold, 1L" />
+												<input type="hidden" name="amount" value="130.00" />
 												<input type="hidden" name="discount_amount" value="1.00" />
 												<input type="hidden" name="currency_code" value="USD" />
 												<input type="hidden" name="return" value=" " />
@@ -1243,6 +1247,7 @@
 								</div>
 							</div>
 						</div>
+			
 						<!-- //INSERT NEW ITEMS HERE -->
 						<div class="col-md-4 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">

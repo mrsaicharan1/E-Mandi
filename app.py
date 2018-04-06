@@ -103,16 +103,17 @@ def checkout():
 
 
 
-
 @app.route('/w_upload', methods=['GET','POST'])
 def w_upload():
     form = UploadForm()
-    if request.method == 'POST' and 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
+    if request.method == 'POST':
         # store in database with transaction id
-        
+        # vegetable_data = Wholeseller(form.WholesellerName.data,form.VegetableName.data,form.Price.data)
+        # db.session.add(vegetable_data)
+        # db.session.commit()
         # render in page 
-        return render_template('pages/index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data,filename=filename)
+
+        return render_template('pages/index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data)
 
     return render_template('forms/wholeseller-upload.html', form=form)
 

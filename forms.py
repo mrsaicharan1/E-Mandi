@@ -45,10 +45,15 @@ class ForgotForm(Form):
 
 class UploadForm(Form):
 
+    WholesellerName = TextField(
+        'Seller Name',validators=[DataRequired(), Length(min=6, max=40)]
+    )
+
     VegetableName = TextField(
         'Veggies', validators=[DataRequired(), Length(min=6, max=40)]
     ) 
     
     Price = DecimalField('Price per Kilo',[DataRequired()])
+
 
     #upload = FileField('image', validators=[FileAllowed(['jpg'],'Upload your veggies')])

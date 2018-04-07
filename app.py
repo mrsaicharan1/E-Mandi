@@ -83,6 +83,10 @@ def register():
         return render_template('forms/register.html',form=form)
 
 
+@app.route('/admin', methods=['GET','POST'])
+def admin():
+    data = User.query.all()
+    return render_template('pages/admin.html',data=data)
 
 @app.route('/forgot')
 def forgot():

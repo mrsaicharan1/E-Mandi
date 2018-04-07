@@ -108,9 +108,9 @@ def w_upload():
     form = UploadForm()
     if request.method == 'POST':
         # store in database with transaction id
-        # vegetable_data = Wholeseller(form.WholesellerName.data,form.VegetableName.data,form.Price.data)
-        # db.session.add(vegetable_data)
-        # db.session.commit()
+        vegetable_data = Wholeseller(form.WholesellerName.data,form.VegetableName.data,form.Price.data)
+        db.session.add(vegetable_data)
+        db.session.commit()
         # render in page 
 
         return render_template('pages/index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data)

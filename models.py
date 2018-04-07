@@ -53,7 +53,7 @@ class Wholeseller(Base):
     id = db.Column(db.Integer,primary_key=True)
     wholeseller_name = db.Column(db.String(10))
     vegetable_name = db.Column(db.String(60))
-    price = db.Column(db.Integer)
+    price = db.Column(db.Float)
 
     def __init__(self,wholeseller_name,vegetable_name,price):
         self.wholeseller_name = wholeseller_name

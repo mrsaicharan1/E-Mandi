@@ -1205,7 +1205,21 @@
 					<div class="col-md-4 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
-									<img src="/static/img/tomato.jpg" alt="">
+									{% if name_vegetable == 'tomato' %}
+									<img src="/static/img/tomato.jpg" alt="" height="200" width="200" > 
+									{% endif %}
+									{% if name_vegetable == 'cucumber' %}
+									<img src="/static/img/cucmber.jpg" alt="" height="200" width="200">
+									{% endif %}	
+									{% if name_vegetable == 'brinjal' %}
+									<img src="/static/img/brinjal.jpg" alt="" height="200" width="200">
+									{% endif %}
+									{% if name_vegetable == 'capsicum' %}
+									<img src="/static/img/capsicum.jpg" alt="" height="200" width="200">
+									{% endif %}
+									{% if name_vegetaable == 'cabbage' %}
+									<img src="/static/img/cabbage.jpg" alt="" height="200" width="200">
+									{% endif %}								
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
 											<a href="pages/single.html" class="link-product-add-cart">Quick View</a>
@@ -1216,13 +1230,13 @@
 								</div>
 								<div class="item-info-product ">
 									<h4>
-										<a href="pages/single.html">Tomato</a>
+										<a href="pages/single.html">{{ name_vegetable }}</a>
 									</h4>
 									<div class="info-product-price">
 										<span class="item_price">
 											<select id="tomato-list">
 												
-													<option value="{{ wholeseller_name}}">{{ vegetable_price }}</option>
+													<option value="{{ price_vegetable }}">{{ wholeseller_name }}- {{ price_vegetable }} $</option>
 												
 											</select>
 										</span>
@@ -1233,9 +1247,9 @@
 												<input type="hidden" name="cmd" value="_cart" />
 												<input type="hidden" name="add" value="1" />
 												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Saffola Gold, 1L" />
-												<input type="hidden" name="amount" value="130.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
+												<input type="hidden" name="item_name" value="{{ name_vegetable }}" />
+												<input type="hidden" name="amount" value=" {{ price_vegetable }}" />
+												<!-- <input type="hidden" name="discount_amount" value="1.00" /> -->
 												<input type="hidden" name="currency_code" value="USD" />
 												<input type="hidden" name="return" value=" " />
 												<input type="hidden" name="cancel_return" value=" " />

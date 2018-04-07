@@ -15,7 +15,7 @@ class RegisterForm(Form):
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )   
     
-    password = PasswordField(
+    password = PasswordField(   
         'Password', validators=[DataRequired(), Length(min=6, max=40)]
     )
     

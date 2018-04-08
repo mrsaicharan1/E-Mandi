@@ -25,7 +25,8 @@ bootstrap=Bootstrap(app)
 
 @app.route('/')
 def home():
-    return render_template('pages/index.html')
+    items = Wholeseller.query.all()
+    return render_template('pages/index.html',items=items)
 
 
 @app.route('/about')
@@ -97,10 +98,14 @@ def forgot():
 def product():
     return render_template('pages/product.html')
 
-@app.route('/checkout.html')
+@app.route('/checkout')
 def checkout():
     return render_template('pages/checkout.html')    
 
+@app.route('/logout',methods=['POST','GET'])
+def logout():
+    session.clear()
+    return redirect(url_for('home'))    
 # Vegetable Upload routes-----------------
 
 
@@ -115,9 +120,10 @@ def w_upload():
         vegetable_data = Wholeseller(form.WholesellerName.data,form.VegetableName.data,form.Price.data)
         db.session.add(vegetable_data)
         db.session.commit()
+        items = Wholeseller.query.all()
         # render in page 
 
-        return render_template('pages/index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data)
+        return render_template('pages/index.html',items=items,name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data)
 
     return render_template('forms/wholeseller-upload.html', form=form)
 

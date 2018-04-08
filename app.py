@@ -98,9 +98,13 @@ def forgot():
 def product():
     return render_template('pages/product.html')
 
-@app.route('/checkout')
-def checkout():
-    return render_template('pages/checkout.html')    
+@app.route('/cart',methods=['GET','POST'])
+def cart(vegetable,vegetable_price):
+    if request.method == 'GET':
+
+        return render_template('checkout.html')
+
+        
 
 @app.route('/logout',methods=['POST','GET'])
 def logout():

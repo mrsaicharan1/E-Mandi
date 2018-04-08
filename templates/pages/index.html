@@ -118,23 +118,25 @@
 		  <div class="cell"></div>
 		</div> -->
 	<!--PREDEFINED IMAGES-->
-	<form action="{{url_for('checkout')}}">
+	<form action="{{url_for('cart',vegetable='tomato', vegetable_price='{{ item['price'] }}')}}">
 		<div id='tomato'>
 
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'tomato' %}
-  			<img src="https://placehold.it/200x200"/><br>
+  			<img src="https://placehold.it/100x100"/><br>
   			<input type="radio" name="vegetable" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br/>			
 			{% endif %}
 			{% endfor %}
 		</div>
-
-		<div id='cucmber'>
+	</form>
+	<form action="{{url_for('cart',vegetable='tomato', vegetable_price='{{ item['price'] }}')}}">	
+		<div id='cucumber'>
 
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'cucumber' %}
-  			<img src="https://placehold.it/200x200"/><br>
-  			<input type="radio" name="vegetable" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br/>
+  			<img src="https://placehold.it/100x100"/><br>
+  			<input type="submit" name="vegetable" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br/>
+  			<input type="" name="vegetable" value="{{ item['price'] }}"><br/>
 			{% endif %}
 			{% endfor %}
 		</div>

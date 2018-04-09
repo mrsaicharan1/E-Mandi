@@ -22,11 +22,10 @@ db = SQLAlchemy(app)
 bootstrap=Bootstrap(app)
 
 
-
 @app.route('/')
 def home():
     items = Wholeseller.query.all()
-    return render_template('pages/index.html',items=items)
+    return render_template('pages/index.html',items=items,cart=cart)
 
 
 @app.route('/about')
@@ -99,10 +98,13 @@ def product():
     return render_template('pages/product.html')
 
 @app.route('/cart',methods=['GET','POST'])
-def cart(vegetable,vegetable_price):
-    if request.method == 'GET':
+def cart():
+    total =0
+    cart = {}
+    cart.update({request.form['vegetable_name']:request.form['vegetable_price']})
+    total =+ float(request.form['vegetable_price'])
 
-        return render_template('checkout.html')
+    return render_template('forms/checkout.html',cart=cart,total=total,vegetable=request.form['vegetable_name'],vegetable_price=request.form['vegetable_price'])
 
         
 

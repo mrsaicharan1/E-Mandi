@@ -46,20 +46,23 @@ def login():
             kind = user.user_type 
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
-                return render_template('pages/index.html',user_type=kind)
+                session['user_type']=kind
+                return redirect(url_for('home'))
 
         # retailer login
         if user and user.user_type == 'retailer' :
             kind = user.user_type 
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
-                return render_template('pages/index.html',user_type=kind) 
+                session['user_type']=kind
+                return redirect(url_for('home'))
         # wholeseller login        
         if user and user.user_type == 'wholeseller' :
             kind = user.user_type    
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
-                return render_template('pages/index.html',user_type=kind) 
+                session['user_type']=kind
+                return redirect(url_for('home')) 
         else:
             user = not_found_error
 

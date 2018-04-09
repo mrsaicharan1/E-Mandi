@@ -62,15 +62,15 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if not session %}
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="{{url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         
-        <li><a href="#"><span class="glyphicon glyphicon-certificate"></span> Register</a></li>
+        <li><a href="url_for('Registered')"><span class="glyphicon glyphicon-certificate"></span> Register</a></li>
         
         {% endif %}
         
         {% if session %}
         
-        <li><a href="#"><span class="glyphicon glyphicon-pawn"></span>Registered as {{ session['name'] }} ({{ user_type }})</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-pawn"></span>Logged in as {{ session['name'] }} ({{ session['user_type'] }})</a></li>
 
         <li><a href="{{ url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         

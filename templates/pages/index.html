@@ -129,8 +129,9 @@
 			{% endif %}<br>
 			{% endfor %}
 		</div>
-	</form><br>
-	<form method=post action="{{url_for('cart')}}">	
+	</form><br>  
+	
+  <form method=post action="{{url_for('cart')}}">	
 		<div id='cucumber'>
 
 			{% for item in items %}
@@ -142,6 +143,30 @@
 			{% endfor %}
 		</div>
 	</form><br> 
+    <form method=post action="{{url_for('cart')}}"> 
+    <div id='cabbage'>
+
+      {% for item in items %}
+      {% if item['vegetable_name'] == 'cabbage' %}
+        <img src="https://placehold.it/100x100"/><br>
+        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}">
+        <input type="submit" name="vegetable_price" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
+      {% endif %}<br>
+      {% endfor %}
+    </div>
+  </form><br> 
+    <form method=post action="{{url_for('cart')}}"> 
+    <div id='potato'>
+
+      {% for item in items %}
+      {% if item['vegetable_name'] == 'potato' %}
+        <img src="https://placehold.it/100x100"/><br>
+        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}">
+        <input type="submit" name="vegetable_price" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
+      {% endif %}<br>
+      {% endfor %}
+    </div>
+  </form><br> 
 	<!--//PREDEFINED IMAGES-->
 <!-- 		{% for item in items %}
 		<div id="item-seller-name">{{ item['wholeseller_name'] }}</div>

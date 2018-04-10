@@ -8,7 +8,8 @@ import os
 from models import *
 import bcrypt
 from werkzeug import secure_filename, FileStorage
-from flask_uploads import UploadSet,configure_uploads, IMAGES
+from flask_uploads import UploadSet,configure_uploads
+from cart import ShoppingCart
 
 app = Flask(__name__)
 
@@ -20,7 +21,8 @@ configure_uploads(app,photos)
 
 db = SQLAlchemy(app)
 bootstrap=Bootstrap(app)
-
+em_cart = ShoppingCart()
+em_cart.total = 0
 
 @app.route('/')
 def home():
@@ -102,12 +104,10 @@ def product():
 
 @app.route('/cart',methods=['GET','POST'])
 def cart():
-    total =0
-    cart = {}
-    cart.update({request.form['vegetable_name']:request.form['vegetable_price']})
-    total =+ float(request.form['vegetable_price'])
+        if request.method == 'POST':
 
-    return render_template('forms/checkout.html',cart=cart,total=total,vegetable=request.form['vegetable_name'],vegetable_price=request.form['vegetable_price'])
+            em_cart.add_item(request.form['vegetable_name'],1,request.form['vegetable_price'])
+            return render_template('forms/checkout.html', em_cart=em_cart)
 
         
 
@@ -132,7 +132,8 @@ def w_upload():
         items = Wholeseller.query.all()
         # render in page 
 
-        return render_template('pages/index.html',items=items,name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data)
+        return redirect(url_for('pages/index.html',items=items,name_vegetable=form.VegetableName.data, 
+                            price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data))
 
     return render_template('forms/wholeseller-upload.html', form=form)
 

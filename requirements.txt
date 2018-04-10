@@ -4,6 +4,8 @@ Flask-WTF
 WTForms
 coverage
 flask-bcrypt
+flask_bootstrap
+flask_uploads
 # ecdsa
 # paramiko
 # pycrypto

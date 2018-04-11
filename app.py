@@ -27,7 +27,7 @@ em_cart.total = 0
 @app.route('/')
 def home():
     items = Wholeseller.query.all()
-    return render_template('pages/index.html',items=items,cart=cart)
+    return render_template('pages/index.html',items=items)
 
 
 @app.route('/about')
@@ -132,8 +132,8 @@ def w_upload():
         items = Wholeseller.query.all()
         # render in page 
 
-        return redirect(url_for('pages/index.html',items=items,name_vegetable=form.VegetableName.data, 
-                            price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data))
+        return render_template('pages/index.html',items=items,name_vegetable=form.VegetableName.data, 
+                            price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data)
 
     return render_template('forms/wholeseller-upload.html', form=form)
 

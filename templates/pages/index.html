@@ -118,6 +118,18 @@
 		  <div class="cell"></div>
 		</div> -->
 	<!--PREDEFINED IMAGES-->
+  <!-- 
+  <form method =post action="{{url_for('cart')}}">
+    <div id="rendered">
+      {% for item in items %}
+      <img src="https://placehold.it/100x100"/><br>
+      <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}">
+      <input type="submit" name="vegetable_price" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
+      {% endfor %}
+      < /div>
+      }
+    </form>
+   -->
 	<form method =post action="{{url_for('cart')}}">
 		<div id='tomato'>
 

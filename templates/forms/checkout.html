@@ -14,10 +14,10 @@
 <div class="container">
   <h2><span class="glyphicon glyphicon-shopping-em_cart"></span></p></h2>
   <div class="list-group">
-    {% for vegetable,price in em_cart.items.items() %}
+    <!-- loop over items in cart -->
+    {% for vegetable,quantity in em_cart.items.items() %} 
     <a href="#" id="vegetable">{{ vegetable }}</a>
-    <a href="#" id="price">{{ price }}</a>
-
+    <a href="#" id="quantity">{{ quantity }}</a>
     <br>
     {% endfor %}
   </div>

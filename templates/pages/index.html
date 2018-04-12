@@ -64,13 +64,15 @@
         {% if not session %}
         <li><a href="{{url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         
-        <li><a href="url_for('Registered')"><span class="glyphicon glyphicon-certificate"></span> Register</a></li>
+        <li><a href="{{url_for('register')}}"><span class="glyphicon glyphicon-certificate"></span> Register</a></li>
         
         {% endif %}
         
         {% if session %}
         
         <li><a href="#"><span class="glyphicon glyphicon-pawn"></span>Logged in as {{ session['name'] }} ({{ session['user_type'] }})</a></li>
+        <li><a href="#"><span class=" glyphicon glyphicon-link"></span>{{ session['user_id'] }}</a></li>
+
 
         <li><a href="{{ url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         
@@ -130,14 +132,16 @@
       }
     </form>
    -->
+
 	<form method =post action="{{url_for('cart')}}">
 		<div id='tomato'>
 
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'tomato' %}
   			<img src="https://placehold.it/100x100"/><br>
-  			<input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}">
-  			<input type="submit" name="vegetable_price" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>		
+  			<input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly>
+        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly>
+  			<input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly>{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>		
 			{% endif %}<br>
 			{% endfor %}
 		</div>
@@ -149,8 +153,9 @@
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'cucumber' %}
   			<img src="https://placehold.it/100x100"/><br>
-  			<input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}">
-  			<input type="submit" name="vegetable_price" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
+  			<input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly>
+  			<input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly>
+        <input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly> Rs.{{ item['price'] }}<br>
 			{% endif %}<br>
 			{% endfor %}
 		</div>
@@ -161,8 +166,9 @@
       {% for item in items %}
       {% if item['vegetable_name'] == 'cabbage' %}
         <img src="https://placehold.it/100x100"/><br>
-        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}">
-        <input type="submit" name="vegetable_price" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
+        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly>
+        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly>
+        <input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly>{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
       {% endif %}<br>
       {% endfor %}
     </div>
@@ -173,8 +179,9 @@
       {% for item in items %}
       {% if item['vegetable_name'] == 'potato' %}
         <img src="https://placehold.it/100x100"/><br>
-        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}">
-        <input type="submit" name="vegetable_price" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
+        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly>
+        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly>
+        <input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly>{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
       {% endif %}<br>
       {% endfor %}
     </div>

@@ -4,7 +4,8 @@
   <form method="post" action ="{{ url_for('login') }}" class="form" role="form">
     <h3 class="form-heading">Login <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
     
-    {{ form.name(class_ = 'form-control first-input', placeholder = form.name.label.text, required = true, autofocus = true) }}</br>
+    {{ form.user_id(class_ = 'form-control first-input', placeholder = form.user_id.label.text, required = true, autofocus = true) }}</br>
+	{{ form.name(class_ = 'form-control', placeholder = form.name.label.text, required = true, autofocus = true) }}</br>
     {{ form.password(class_ = 'form-control last-input', placeholder = form.password.label.text, required = true) }}</br>
 
     <p class="pull-left"><a href="{{ url_for('forgot') }}">Forgot Password?</a></p>

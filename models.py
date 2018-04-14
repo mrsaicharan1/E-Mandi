@@ -35,14 +35,16 @@ class Transaction(Base):
     __tablename__ = 'Transaction'
 
     id = db.Column(db.Integer,primary_key=True)
-    user_id = db.Column(db.String(10),db.ForeignKey('Users.id'))
-    create_user_id = db.relationship("User", foreign_keys=user_id)
+    user_id = db.Column(db.String(10))
+    seller_id = db.Column(db.String(10))
+    vegetable_id = db.Column(db.String(60))
     date = db.Column(db.Date)
     amount = db.Column(db.Integer)
 
-    def __init__(self,user_id,date,amount):
-        self.user_id=user_id
-        self.date = date
+    def __init__(self,user_id,seller_id,vegetable_id,amount):
+        self.user_id = user_id
+        self.seller_id = seller_id
+        self.vegetable_id = vegetable_id
         self.amount = amount
 
 class Wholeseller(Base):

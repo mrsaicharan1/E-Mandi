@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import TextField, FloatField, IntegerField, PasswordField,FileField,DecimalField, StringField, BooleanField, SubmitField, TextAreaField
+from wtforms import TextField, PasswordField,FileField,DecimalField, StringField, BooleanField, SubmitField, TextAreaField
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 from wtforms.validators import DataRequired, EqualTo, Length, ValidationError, Email
 from flask_wtf.file import FileField, FileRequired, FileAllowed
@@ -34,10 +34,7 @@ class RegisterForm(Form):
 
 
 class LoginForm(Form):
-    user_id = IntegerField('user id', [DataRequired()])
-
     name = TextField('name', [DataRequired()])
-    
     password = PasswordField('Password', [DataRequired()])
 
 

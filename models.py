@@ -5,15 +5,11 @@ from sqlalchemy import Column, Integer, String
 from app import db
 
 engine = create_engine('sqlite:///user.db', echo=True)
-db_session = scoped_session(sessionmaker(autocommit=True,
-                                         autoflush=False,
-                                         bind=engine))
+db_session = scoped_session(sessionmaker(autocommit=True, autoflush=False, bind=engine))
 Base = declarative_base()
 Base.query = db_session.query_property()
 
 # Set your classes here.
-
-
 class User(Base):
     __tablename__ = 'Users'
 
@@ -29,7 +25,6 @@ class User(Base):
         self.email = email
         self.password = password
         self.user_type = user_type
-
 
 class Transaction(Base):
     __tablename__ = 'Transaction'
@@ -73,7 +68,22 @@ class Retailer(Base):
         self.vegetable_name = vegetable_name
         self.price = price
 
+class Complaint(Base):
+    __tablename__ = 'Complaint'
 
+    id = db.Column(db.Integer,primary_key = True)
+    user_id = db.Column(db.String(),db.ForeignKey('Users.id'))
+    title = db.Column(db.String)
+    category =  db.Column(db.String)
+    date = db.Column(db.Date)
+    status = db.Column(db.String)
+
+    def __init__(self, user_id, title, category, date, status):
+            self.user_id = user_id
+            self.title = title
+            self.category = category
+            self.date = date
+            self.status = status
 
 # Create tables.
 Base.metadata.create_all(bind=engine)

@@ -5,11 +5,15 @@ from sqlalchemy import Column, Integer, String
 from app import db
 
 engine = create_engine('sqlite:///user.db', echo=True)
-db_session = scoped_session(sessionmaker(autocommit=True, autoflush=False, bind=engine))
+db_session = scoped_session(sessionmaker(autocommit=True,
+                                         autoflush=False,
+                                         bind=engine))
 Base = declarative_base()
 Base.query = db_session.query_property()
 
 # Set your classes here.
+
+
 class User(Base):
     __tablename__ = 'Users'
 
@@ -26,20 +30,19 @@ class User(Base):
         self.password = password
         self.user_type = user_type
 
+
 class Transaction(Base):
     __tablename__ = 'Transaction'
 
     id = db.Column(db.Integer,primary_key=True)
-    user_id = db.Column(db.String(10))
-    seller_id = db.Column(db.String(10))
-    vegetable_id = db.Column(db.String(60))
+    user_id = db.Column(db.String(10),db.ForeignKey('Users.id'))
+    create_user_id = db.relationship("User", foreign_keys=user_id)
     date = db.Column(db.Date)
     amount = db.Column(db.Integer)
 
-    def __init__(self,user_id,seller_id,vegetable_id,amount):
-        self.user_id = user_id
-        self.seller_id = seller_id
-        self.vegetable_id = vegetable_id
+    def __init__(self,user_id,date,amount):
+        self.user_id=user_id
+        self.date = date
         self.amount = amount
 
 class Wholeseller(Base):
@@ -68,22 +71,7 @@ class Retailer(Base):
         self.vegetable_name = vegetable_name
         self.price = price
 
-class Complaint(Base):
-    __tablename__ = 'Complaint'
 
-    id = db.Column(db.Integer,primary_key = True)
-    user_id = db.Column(db.String(),db.ForeignKey('Users.id'))
-    title = db.Column(db.String)
-    category =  db.Column(db.String)
-    date = db.Column(db.Date)
-    status = db.Column(db.String)
-
-    def __init__(self, user_id, title, category, date, status):
-            self.user_id = user_id
-            self.title = title
-            self.category = category
-            self.date = date
-            self.status = status
 
 # Create tables.
 Base.metadata.create_all(bind=engine)

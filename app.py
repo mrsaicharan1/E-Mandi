@@ -10,6 +10,8 @@ import bcrypt
 from werkzeug import secure_filename, FileStorage
 from flask_uploads import UploadSet,configure_uploads
 from cart import ShoppingCart
+import datetime
+import time
 
 app = Flask(__name__)
 
@@ -39,7 +41,7 @@ def about():
 def login(): 
     form = LoginForm()
     error = None
-    
+      
     
     if request.method == 'POST':
         user = User.query.filter_by(name=form.name.data).first()
@@ -49,21 +51,24 @@ def login():
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
                 session['user_type']=kind
+                session['user_id'] = form.user_id.data
                 return redirect(url_for('home'))
 
         # retailer login
         if user and user.user_type == 'retailer' :
-            kind = user.user_type 
+            kind = user.user_type
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
                 session['user_type']=kind
+                session['user_id'] = form.user_id.data
                 return redirect(url_for('home'))
         # wholeseller login        
         if user and user.user_type == 'wholeseller' :
-            kind = user.user_type    
+            kind = user.user_type   
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
                 session['user_type']=kind
+                session['user_id'] = form.user_id.data
                 return redirect(url_for('home')) 
         else:
             user = not_found_error
@@ -90,7 +95,7 @@ def register():
 
 @app.route('/admin', methods=['GET','POST'])
 def admin():
-    data = User.query.all()
+    data = Transaction.query.all()
     return render_template('pages/admin.html',data=data)
 
 @app.route('/forgot')
@@ -109,7 +114,15 @@ def cart():
             em_cart.add_item(request.form['vegetable_name'],1,request.form['vegetable_price'])
             return render_template('forms/checkout.html', em_cart=em_cart)
 
-        
+@app.route('/checkout', methods=['GET','POST'])
+def checkout():
+    if request.method == 'POST':
+        transaction = Transaction(session['user_id'],datetime.date.today(),request.form['pay'])
+        db.session.add(transaction)
+        db.session.commit()
+        return redirect(url_for('home'))        
+
+
 
 @app.route('/logout',methods=['POST','GET'])
 def logout():
@@ -151,7 +164,13 @@ def r_upload():
 def register_complaint():
     form = RegisterComplaintForm()
 
-    
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login'))
     return render_template('forms/register-complaint.html', title='Register', form=form)
 
 

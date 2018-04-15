@@ -139,19 +139,19 @@
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'tomato' %}
   			<img src="https://placehold.it/100x100"/><br>
-  			<input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br>
-        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
+  			<b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
+        <b>Wholeseller Name</b><input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
   			<input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br>
         {% for vegetable in govt %}
         {% if vegetable['vegetable_name'] == 'tomato' %}
-        <input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
+        <b>Government Price </b><input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
         {% endif %}
+      </form><br>
         {% endfor %}
 
 			{% endif %}<br>
 			{% endfor %}
 		</div>
-	</form><br>
 
   <form method=post action="{{url_for('cart')}}">
 		<div id='cucumber'>
@@ -159,12 +159,12 @@
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'cucumber' %}
   			<img src="https://placehold.it/100x100"/><br>
-  			<input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br>
-  			<input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
+  			<b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
+  			<b>Wholeseller Name</b><input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
         <input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly> Rs.{{ item['price'] }}<br>
         {% for vegetable in govt %}
         {% if vegetable['vegetable_name'] == 'cucumber' %}
-        <input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
+        <b>Government Price </b><input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
         {% endif %}
         {% endfor %}
 			{% endif %}<br>
@@ -178,12 +178,12 @@
       {% for item in items %}
       {% if item['vegetable_name'] == 'cabbage' %}
         <img src="https://placehold.it/100x100"/><br>
-        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br>
-        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
+        <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
+        <b>Wholeseller Name</b><input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
         <input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly>{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
         {% for vegetable in govt %}
         {% if vegetable['vegetable_name'] == 'cabbage' %}
-        <input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
+        <b>Government Price </b><input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
         {% endif %}
         {% endfor %}
       {% endif %}<br>
@@ -197,12 +197,12 @@
       {% for item in items %}
       {% if item['vegetable_name'] == 'potato' %}
         <img src="https://placehold.it/100x100"/><br>
-        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br>
-        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
+        <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
+        <b>Wholeseller Name</b><input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
         <input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly>{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
         {% for vegetable in govt %}
         {% if vegetable['vegetable_name'] == 'potato' %}
-        <input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
+        <b>Government Price </b><input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
         {% endif %}
         {% endfor %}
       {% endif %}<br>

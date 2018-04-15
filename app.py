@@ -29,7 +29,8 @@ em_cart.total = 0
 @app.route('/')
 def home():
     items = Wholeseller.query.all()
-    return render_template('pages/index.html',items=items)
+    govt = Government.query.all()
+    return render_template('pages/index.html',items=items,govt=govt)
 
 
 @app.route('/about')
@@ -38,16 +39,16 @@ def about():
 
 
 @app.route('/login',methods=['POST','GET'])
-def login(): 
+def login():
     form = LoginForm()
     error = None
-      
-    
+
+
     if request.method == 'POST':
         user = User.query.filter_by(name=form.name.data).first()
         # customer login
         if user and user.user_type == 'customer' :
-            kind = user.user_type 
+            kind = user.user_type
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
                 session['user_type']=kind
@@ -62,20 +63,20 @@ def login():
                 session['user_type']=kind
                 session['user_id'] = form.user_id.data
                 return redirect(url_for('home'))
-        # wholeseller login        
+        # wholeseller login
         if user and user.user_type == 'wholeseller' :
-            kind = user.user_type   
+            kind = user.user_type
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['name'] = form.name.data
                 session['user_type']=kind
                 session['user_id'] = form.user_id.data
-                return redirect(url_for('home')) 
+                return redirect(url_for('home'))
         else:
             user = not_found_error
 
         if not user:
             error = 'Incorrect credentials'
-    return render_template('forms/login.html', form=form, error=error)	
+    return render_template('forms/login.html', form=form, error=error)
 
 
 
@@ -120,14 +121,14 @@ def checkout():
         transaction = Transaction(session['user_id'],datetime.date.today(),request.form['pay'])
         db.session.add(transaction)
         db.session.commit()
-        return redirect(url_for('home'))        
+        return redirect(url_for('home'))
 
 
 
 @app.route('/logout',methods=['POST','GET'])
 def logout():
     session.clear()
-    return redirect(url_for('home'))    
+    return redirect(url_for('home'))
 # Vegetable Upload routes-----------------
 
 
@@ -143,9 +144,9 @@ def w_upload():
         db.session.add(vegetable_data)
         db.session.commit()
         items = Wholeseller.query.all()
-        # render in page 
+        # render in page
 
-        return render_template('pages/index.html',items=items,name_vegetable=form.VegetableName.data, 
+        return render_template('pages/index.html',items=items,name_vegetable=form.VegetableName.data,
                             price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data)
 
     return render_template('forms/wholeseller-upload.html', form=form)
@@ -158,7 +159,7 @@ def r_upload():
         return render_template('pages/index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data,filename=filename)
 
     return render_template('forms/retailer-upload.html', form=form)
-    
+
 
 @app.route('/register_complaint', methods = ['GET','POST'])
 def register_complaint():
@@ -206,4 +207,3 @@ if not app.debug:
 # Default port:
 if __name__ == '__main__':
     app.run(debug=True)
-

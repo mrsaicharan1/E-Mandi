@@ -8,36 +8,36 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
-    
+
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 1500px}
-    
+
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
       height: 100%;
     }
-    
+
     /* Set black background color, white text and some padding */
     footer {
       background-color: #555;
       color: white;
       padding: 15px;
     }
-    
+
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
         height: auto;
         padding: 15px;
       }
-      .row.content {height:auto;} 
+      .row.content {height:auto;}
     }
   </style>
 </head>
@@ -49,7 +49,7 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-shopping-cart">E-mandi</span></a>
     </div>
@@ -63,43 +63,43 @@
       <ul class="nav navbar-nav navbar-right">
         {% if not session %}
         <li><a href="{{url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        
+
         <li><a href="{{url_for('register')}}"><span class="glyphicon glyphicon-certificate"></span> Register</a></li>
-        
+
         {% endif %}
-        
+
         {% if session %}
-        
+
         <li><a href="#"><span class="glyphicon glyphicon-pawn"></span>Logged in as {{ session['name'] }} ({{ session['user_type'] }})</a></li>
         <li><a href="#"><span class=" glyphicon glyphicon-link"></span>{{ session['user_id'] }}</a></li>
 
 
         <li><a href="{{ url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-        
+
         {% endif %}
       </ul>
     </div>
   </div>
 </nav>
-  
-<div class="container-fluid text-center">    
+
+<div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <p><a href="#"></a></p>
 <!--       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p> -->
     </div>
-    <div class="col-sm-8 text-left"> 
+    <div class="col-sm-8 text-left">
       <div>
 <!-- 	  	<style>.
 		.grid {
-		  display: flex;                       
-		  flex-wrap: wrap;                     
+		  display: flex;
+		  flex-wrap: wrap;
 		  justify-content: space-around;
-		  
+
 		}
 		.cell {
-		  flex: 0 0 32%;                       
+		  flex: 0 0 32%;
 		  height: 50px;
 		  margin-bottom: 5px;
 		  background-color: #999;
@@ -120,7 +120,7 @@
 		  <div class="cell"></div>
 		</div> -->
 	<!--PREDEFINED IMAGES-->
-  <!-- 
+  <!--
   <form method =post action="{{url_for('cart')}}">
     <div id="rendered">
       {% for item in items %}
@@ -139,59 +139,79 @@
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'tomato' %}
   			<img src="https://placehold.it/100x100"/><br>
-  			<input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly>
-        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly>
-  			<input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly>{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>		
+  			<input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br>
+        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
+  			<input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br>
+        {% for vegetable in govt %}
+        {% if vegetable['vegetable_name'] == 'tomato' %}
+        <input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
+        {% endif %}
+        {% endfor %}
+
 			{% endif %}<br>
 			{% endfor %}
 		</div>
-	</form><br>  
-	
-  <form method=post action="{{url_for('cart')}}">	
+	</form><br>
+
+  <form method=post action="{{url_for('cart')}}">
 		<div id='cucumber'>
 
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'cucumber' %}
   			<img src="https://placehold.it/100x100"/><br>
-  			<input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly>
-  			<input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly>
+  			<input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br>
+  			<input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
         <input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly> Rs.{{ item['price'] }}<br>
+        {% for vegetable in govt %}
+        {% if vegetable['vegetable_name'] == 'cucumber' %}
+        <input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
+        {% endif %}
+        {% endfor %}
 			{% endif %}<br>
 			{% endfor %}
 		</div>
-	</form><br> 
-    <form method=post action="{{url_for('cart')}}"> 
+	</form><br>
+
+    <form method=post action="{{url_for('cart')}}">
     <div id='cabbage'>
 
       {% for item in items %}
       {% if item['vegetable_name'] == 'cabbage' %}
         <img src="https://placehold.it/100x100"/><br>
-        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly>
-        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly>
+        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br>
+        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
         <input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly>{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
+        {% for vegetable in govt %}
+        {% if vegetable['vegetable_name'] == 'cabbage' %}
+        <input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
+        {% endif %}
+        {% endfor %}
       {% endif %}<br>
       {% endfor %}
     </div>
-  </form><br> 
-    <form method=post action="{{url_for('cart')}}"> 
+  </form><br>
+
+    <form method=post action="{{url_for('cart')}}">
     <div id='potato'>
 
       {% for item in items %}
       {% if item['vegetable_name'] == 'potato' %}
         <img src="https://placehold.it/100x100"/><br>
-        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly>
-        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly>
+        <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br>
+        <input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br>
         <input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly>{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
+        {% for vegetable in govt %}
+        {% if vegetable['vegetable_name'] == 'potato' %}
+        <input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly>{{ vegetable['price'] }}<br>
+        {% endif %}
+        {% endfor %}
       {% endif %}<br>
       {% endfor %}
     </div>
-  </form><br> 
-	<!--//PREDEFINED IMAGES-->
-<!-- 		{% for item in items %}
-		<div id="item-seller-name">{{ item['wholeseller_name'] }}</div>
-		<div id="item-name">{{ item['vegetable_name'] }}</div>
-		<div id="item-price">Rs.{{ item['price'] }}</div>
-		{% endfor %} -->
+  </form><br>
+
+<!-- More items -->
+
 	</div>
     </div>
     <div class="col-sm-2 sidenav">

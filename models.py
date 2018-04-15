@@ -22,7 +22,7 @@ class User(Base):
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(30))
     user_type = db.Column(db.String(1))
-	
+
 
     def __init__(self, name, email, password, user_type):
         self.name = name
@@ -71,6 +71,16 @@ class Retailer(Base):
         self.vegetable_name = vegetable_name
         self.price = price
 
+class Government(Base):
+     __tablename__='Government'
+
+     id = db.Column(db.Integer,primary_key=True)
+     vegetable_name = db.Column(db.String(60))
+     price = db.Column(db.Integer)
+
+     def __init__(self,vegetable_name,price):
+         self.vegetable_name = vegetable_name
+         self.price = price
 
 
 # Create tables.

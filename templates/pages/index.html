@@ -138,7 +138,7 @@
 
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'tomato' %}
-  			<img src="https://placehold.it/250x250"/><br><br>
+  			<img src="static/img/tomato.jpg"/><br><br>
   			<b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
 
         <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
@@ -165,7 +165,7 @@
 
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'cucumber' %}
-  			<img src="https://placehold.it/250x250"/><br><br>
+  			<img src="static/img/cucumber.jpg"/><br><br>
   			<b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
   			<b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
       	<b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
@@ -186,7 +186,7 @@
 
       {% for item in items %}
       {% if item['vegetable_name'] == 'cabbage' %}
-        <img src="https://placehold.it/250x250"/><br><br>
+        <img src="static/img/cabbage.jpg"/><br><br>
         <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
         <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
       	<b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
@@ -208,7 +208,7 @@
 
       {% for item in items %}
       {% if item['vegetable_name'] == 'potato' %}
-        <img src="https://placehold.it/250x250"/><br><br>
+        <img src="static/img/potato.jpg"/><br><br>
         <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
         <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
       	<b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
@@ -230,7 +230,7 @@
 
     {% for item in items %}
     {% if item['vegetable_name'] == 'brinjal' %}
-      <img src="https://placehold.it/250x250"/><br><br>
+      <img src="static/img/brinjal.jpg"/><br><br>
       <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
       <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
       <b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
@@ -250,22 +250,24 @@
     <b><h3> Items from various Wholesellers</h3></b><br>
     {% for witem in w_items %}
       {% if witem['vegetable_name'] == 'tomato' %}
-      <img src="https://placehold.it/250x250"/><br><br>
+      <img src="static/img/tomato.jpg"/><br><br>
       {% elif witem['vegetable_name'] == 'potato' %}
-      <img src="https://placehold.it/250x250"/><br><br>
+      <img src="static/img/potato.jpg"/><br><br>
       {% elif witem['vegetable_name'] == 'cucumber' %}
-      <img src="https://placehold.it/250x250"/><br><br>
+      <img src="static/img/cucumber.jpg"/><br><br>
       {% elif witem['vegetable_name'] == 'brinjal' %}
-      <img src="https://placehold.it/250x250"/><br><br>
+      <img src="static/img/brinjal.jpg"/><br><br>
       {% elif witem['vegetable_name'] == 'carrot' %}
-      <img src="https://placehold.it/250x250"/><br><br>
+      <img src="static/img/carrot.jpg"/><br><br>
       {% elif witem['vegetable_name'] == 'onion' %}
-      <img src="https://placehold.it/250x250"/><br><br>
+      <img src="static/img/onion.jpg"/><br><br>
       {% elif witem['vegetable_name'] == 'spinach' %}
-      <img src="https://placehold.it/250x250"/><br><br>
+      <img src="static/img/spinach.jpg"/><br><br>
       {% elif witem['vegetable_name'] == 'capsicum' %}
-      <img src="https://placehold.it/250x250"/><br><br>
-
+      <img src="static/img/capsicum.jpg"/><br><br>
+      {% elif witem['vegetable_name'] == 'cabbage' %}
+      <img src="static/img/cabbage.jpg"/><br><br>
+      {% endif %}
     <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ witem['vegetable_name'] }}" readonly><br><br>
     <b>Wholeseller Name</b><input type="text" name="wholeseller_name" value="{{ witem['wholeseller_name'] }}" readonly><br><br>
     <b>Wholeseller Price</b><input type="submit" name="vegetable_price" value="{{ witem['price'] }}" readonly><br><br>

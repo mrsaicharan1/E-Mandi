@@ -15,22 +15,22 @@
   <h2><span class="glyphicon glyphicon-shopping-em_cart"></span></h2>
   <div class="list-group">
     <!-- loop over items in cart -->
-    {% for vegetable,quantity in em_cart.items.items() %} 
-    <a href="#" id="vegetable">{{ vegetable }}</a>
+    {% for vegetable,quantity in em_cart.items.items() %}
+    <i>{{ vegetable }}</i><br>
    <!--  <a href="#" id="quantity">{{ quantity }}</a> -->
     <br>
     {% endfor %}
-  
+
   </div>
-  <div id="Total">{{ em_cart.total }}</div>
+  <b>Your Total Amount is {{ em_cart.total }}</b>
   <div class="checkout">
     <form method=post action="{{ url_for('checkout')}}">
 
       <h2><span class="glyphicon glyphicon-barcode"></span></h2>
-      <input type="submit" name="pay" value="{{ em_cart.total }}" readonly>
-    </form>  
+      <input type="submit" name="pay" value="PROCEED TO BILLING" readonly>
+    </form>
 
-</div> 
+</div>
   <br>
   <br>
 </div>

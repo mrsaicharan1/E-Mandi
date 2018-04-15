@@ -45,29 +45,29 @@ class Transaction(Base):
         self.date = date
         self.amount = amount
 
-class Wholeseller(Base):
-    __tablename__ = 'Wholeseller'
-
-    id = db.Column(db.Integer,primary_key=True)
-    wholeseller_name = db.Column(db.String(10))
-    vegetable_name = db.Column(db.String(60))
-    price = db.Column(db.Float)
-
-    def __init__(self,wholeseller_name,vegetable_name,price):
-        self.wholeseller_name = wholeseller_name
-        self.vegetable_name = vegetable_name
-        self.price = price
-
 class Retailer(Base):
     __tablename__ = 'Retailer'
 
     id = db.Column(db.Integer,primary_key=True)
     retailer_name = db.Column(db.String(10))
     vegetable_name = db.Column(db.String(60))
-    price = db.Column(db.Integer)
+    price = db.Column(db.Float)
 
     def __init__(self,retailer_name,vegetable_name,price):
         self.retailer_name = retailer_name
+        self.vegetable_name = vegetable_name
+        self.price = price
+
+class Wholeseller(Base):
+    __tablename__ = 'Wholeseller'
+
+    id = db.Column(db.Integer,primary_key=True)
+    wholeseller_name = db.Column(db.String(10))
+    vegetable_name = db.Column(db.String(60))
+    price = db.Column(db.Integer)
+
+    def __init__(self,wholeseller_name,vegetable_name,price):
+        self.wholeseller_name = wholeseller_name
         self.vegetable_name = vegetable_name
         self.price = price
 

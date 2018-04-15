@@ -10,15 +10,15 @@ class RegisterForm(Form):
     name = TextField(
         'name', validators=[DataRequired(), Length(min=6, max=25)]
     )
-    
+
     email = TextField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
-    )   
-    
-    password = PasswordField(   
+    )
+
+    password = PasswordField(
         'Password', validators=[DataRequired(), Length(min=6, max=40)]
     )
-    
+
     confirm = PasswordField(
         'Repeat Password',
         [DataRequired(),
@@ -27,8 +27,8 @@ class RegisterForm(Form):
 
     user_type = TextField(
     'user_type', validators=[DataRequired(), Length(min=6, max=40)]
-    ) 
-    
+    )
+
     #upload = FileField('image', validators=[FileAllowed(['jpg'],'Upload your shitty face')])
 
 
@@ -37,7 +37,7 @@ class LoginForm(Form):
     user_id = IntegerField('user id', [DataRequired()])
 
     name = TextField('name', [DataRequired()])
-    
+
     password = PasswordField('Password', [DataRequired()])
 
 
@@ -46,7 +46,7 @@ class ForgotForm(Form):
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
 
-class UploadForm(Form):
+class WUploadForm(Form):
 
     WholesellerName = TextField(
         'Seller Name',validators=[DataRequired(), Length(min=6, max=40)]
@@ -54,8 +54,20 @@ class UploadForm(Form):
 
     VegetableName = TextField(
         'Veggies', validators=[DataRequired(), Length(min=6, max=40)]
-    ) 
-    
+    )
+
+    Price = DecimalField('Price per Kilo',[DataRequired()])
+
+class RUploadForm(Form):
+
+    RetailerName = TextField(
+        'Seller Name',validators=[DataRequired(), Length(min=6, max=40)]
+    )
+
+    VegetableName = TextField(
+        'Veggies', validators=[DataRequired(), Length(min=6, max=40)]
+    )
+
     Price = DecimalField('Price per Kilo',[DataRequired()])
 
 class RegisterComplaintForm(Form):

@@ -56,7 +56,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Cart</a></li>
+        <li><a href="{{url_for('cart')}}">Cart</a></li>
         <li><a href="#">Projects</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
@@ -126,7 +126,7 @@
       {% for item in items %}
       <img src="https://placehold.it/100x100"/><br>
       <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}">
-      <input type="submit" name="vegetable_price" value="{{ item['price'] }}">{{ item['wholeseller_name'] }} - Rs.{{ item['price'] }}<br>
+      <input type="submit" name="vegetable_price" value="{{ item['price'] }}">{{ item['retailer_name'] }} - Rs.{{ item['price'] }}<br>
       {% endfor %}
       < /div>
       }
@@ -140,15 +140,34 @@
 			{% if item['vegetable_name'] == 'tomato' %}
   			<img src="https://placehold.it/100x100"/><br>
   			<b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
-        <b>Wholeseller Name</b><input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br><br>
-  			<b>Wholeseller Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
+
+        <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
+
+  			<b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
+
+        <!-- Government Price  -->
         {% for vegetable in govt %}
         {% if vegetable['vegetable_name'] == 'tomato' %}
+
         <b>Government Price </b><input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly><br><br>
+
         {% endif %}
         {% endfor %}
+          <!-- //Government Price  -->
 
-			{% endif %}<br>
+        {% if session['user_type'] == 'retailer' %}
+        <!-- Wholeseller Price  -->
+        {% for witem in w_items %}
+        {% if witem['vegetable_name'] == 'tomato' %}
+
+        <b>Wholeseller Price </b><input type="submit" name="wholeseller_price" value="{{ witem['price'] }}" readonly><br><br>
+
+        {% endif %}
+        {% endfor %}
+        <!-- //Wholeseller Price  -->
+        {% endif %}
+
+      {% endif %}<br>
 			{% endfor %}
 		</div>
   </form><br>
@@ -160,14 +179,29 @@
 			{% if item['vegetable_name'] == 'cucumber' %}
   			<img src="https://placehold.it/100x100"/><br>
   			<b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
-  			<b>Wholeseller Name</b><input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br><br>
-      	<b>Wholeseller Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
+  			<b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
+      	<b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
         {% for vegetable in govt %}
         {% if vegetable['vegetable_name'] == 'cucumber' %}
         <b>Government Price </b><input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly><br><br>
         {% endif %}
         {% endfor %}
-			{% endif %}<br>
+
+                {% if session['user_type'] == 'retailer' %}
+                <!-- Wholeseller Price  -->
+                {% for witem in w_items %}
+                {% if witem['vegetable_name'] == 'tomato' %}
+
+                <b>Wholeseller Price </b><input type="submit" name="wholeseller_price" value="{{ witem['price'] }}" readonly><br><br>
+
+                {% endif %}
+                {% endfor %}
+                <!-- //Wholeseller Price  -->
+                {% endif %}
+
+
+
+      {% endif %}<br>
 			{% endfor %}
 		</div>
 	</form><br>
@@ -179,13 +213,27 @@
       {% if item['vegetable_name'] == 'cabbage' %}
         <img src="https://placehold.it/100x100"/><br>
         <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
-        <b>Wholeseller Name</b><input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br><br>
-      	<b>Wholeseller Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
+        <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
+      	<b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
         {% for vegetable in govt %}
         {% if vegetable['vegetable_name'] == 'cabbage' %}
         <b>Government Price </b><input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly><br><br>
         {% endif %}
         {% endfor %}
+
+                {% if session['user_type'] == 'retailer' %}
+                <!-- Wholeseller Price  -->
+                {% for witem in w_items %}
+                {% if witem['vegetable_name'] == 'tomato' %}
+
+                <b>Wholeseller Price </b><input type="submit" name="wholeseller_price" value="{{ witem['price'] }}" readonly><br><br>
+
+                {% endif %}
+                {% endfor %}
+                <!-- //Wholeseller Price  -->
+                {% endif %}
+
+
       {% endif %}<br>
       {% endfor %}
     </div>
@@ -198,13 +246,27 @@
       {% if item['vegetable_name'] == 'potato' %}
         <img src="https://placehold.it/100x100"/><br>
         <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
-        <b>Wholeseller Name</b><input type="text" name="wholeseller_name" value="{{ item['wholeseller_name'] }}" readonly><br><br>
-      	<b>Wholeseller Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
+        <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
+      	<b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
         {% for vegetable in govt %}
         {% if vegetable['vegetable_name'] == 'potato' %}
         <b>Government Price </b><input type="submit" name="govt_price" value="{{ vegetable['price'] }}" readonly><br><br>
         {% endif %}
         {% endfor %}
+
+                {% if session['user_type'] == 'retailer' %}
+                <!-- Wholeseller Price  -->
+                {% for witem in w_items %}
+                {% if witem['vegetable_name'] == 'tomato' %}
+
+                <b>Wholeseller Price </b><input type="submit" name="wholeseller_price" value="{{ witem['price'] }}" readonly><br><br>
+
+                {% endif %}
+                {% endfor %}
+                <!-- //Wholeseller Price  -->
+                {% endif %}
+
+
       {% endif %}<br>
       {% endfor %}
     </div>

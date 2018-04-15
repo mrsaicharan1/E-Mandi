@@ -28,10 +28,10 @@ em_cart.total = 0
 
 @app.route('/')
 def home():
-    items = Wholeseller.query.all()
+    items = Retailer.query.all()
+    w_items = Wholeseller.query.all()
     govt = Government.query.all()
-    return render_template('pages/index.html',items=items,govt=govt)
-
+    return render_template('pages/index.html',items=items,govt=govt,w_items=w_items)
 
 @app.route('/about')
 def about():
@@ -113,7 +113,8 @@ def cart():
         if request.method == 'POST':
 
             em_cart.add_item(request.form['vegetable_name'],1,request.form['vegetable_price'])
-            return render_template('forms/checkout.html', em_cart=em_cart)
+
+        return render_template('forms/checkout.html', em_cart=em_cart)
 
 @app.route('/checkout', methods=['GET','POST'])
 def checkout():
@@ -135,30 +136,39 @@ def logout():
 
 
 
+@app.route('/r_upload', methods=['GET','POST'])
+def r_upload():
+    form = RUploadForm()
+    if request.method == 'POST':
+        # store in database with transaction id
+        vegetable_data = Retailer(form.RetailerName.data,form.VegetableName.data,form.Price.data)
+        db.session.add(vegetable_data)
+        db.session.commit()
+        items = Retailer.query.all()
+        govt = Government.query.all()
+        # render in page
+
+        return render_template('pages/index.html',items=items,name_vegetable=form.VegetableName.data,
+                            price_vegetable=form.Price.data,retailer_name=form.RetailerName.data,govt=govt)
+
+    return render_template('forms/retailer-upload.html', form=form)
+
 @app.route('/w_upload', methods=['GET','POST'])
 def w_upload():
     form = UploadForm()
     if request.method == 'POST':
         # store in database with transaction id
-        vegetable_data = Wholeseller(form.WholesellerName.data,form.VegetableName.data,form.Price.data)
+        vegetable_data = Retailer(form.WholesellerName.data,form.VegetableName.data,form.Price.data)
         db.session.add(vegetable_data)
         db.session.commit()
         items = Wholeseller.query.all()
+        govt = Government.query.all()
         # render in page
 
         return render_template('pages/index.html',items=items,name_vegetable=form.VegetableName.data,
-                            price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data)
+                            price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data,govt=govt)
 
     return render_template('forms/wholeseller-upload.html', form=form)
-
-@app.route('/r_upload', methods=['GET','POST'])
-def r_upload():
-    form = UploadForm()
-    if request.method == 'POST' and 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        return render_template('pages/index.html',name_vegetable=form.VegetableName.data,price_vegetable=form.Price.data,filename=filename)
-
-    return render_template('forms/retailer-upload.html', form=form)
 
 
 @app.route('/register_complaint', methods = ['GET','POST'])

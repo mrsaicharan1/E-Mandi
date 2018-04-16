@@ -13,6 +13,9 @@ from cart import ShoppingCart
 import datetime
 import time
 import random
+engine = create_engine('sqlite:///user.db', echo=True)
+from sqlalchemy.sql import text
+
 
 app = Flask(__name__)
 
@@ -34,7 +37,10 @@ def home():
     govt = Government.query.all()
     retailer_list = ['kiran','raju','mani','jayanthi','naresh']
     best_retailer = random.choice(retailer_list)
-    return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,best_retailer=best_retailer)
+    connection = engine.connect()
+    s = text("SELECT SUM(amount) FROM Transaction WHERE region=:r")
+    total_revenue = connection.execute(s,r=session['region'])
+    return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,best_retailer=best_retailer,total_revenue=total_revenue)
 
 @app.route('/about')
 def about():
@@ -56,6 +62,7 @@ def login():
                 session['name'] = form.name.data
                 session['user_type']=kind
                 session['user_id'] = form.user_id.data
+                session['region'] = user.region
                 return redirect(url_for('home'))
 
         # retailer login
@@ -65,6 +72,7 @@ def login():
                 session['name'] = form.name.data
                 session['user_type']=kind
                 session['user_id'] = form.user_id.data
+                session['region'] = user.region
                 return redirect(url_for('home'))
         # wholeseller login
         if user and user.user_type == 'wholeseller' :
@@ -73,6 +81,7 @@ def login():
                 session['name'] = form.name.data
                 session['user_type']=kind
                 session['user_id'] = form.user_id.data
+                session['region'] = user.region
                 return redirect(url_for('home'))
         else:
              user = not_found_error
@@ -122,7 +131,7 @@ def cart():
 @app.route('/checkout', methods=['GET','POST'])
 def checkout():
     if request.method == 'POST':
-        transaction = Transaction(session['user_id'],datetime.date.today(),request.form['pay'])
+        transaction = Transaction(session['user_id'],datetime.date.today(),request.form['pay'],session['region'])
         db.session.add(transaction)
         db.session.commit()
         return redirect(url_for('home'))

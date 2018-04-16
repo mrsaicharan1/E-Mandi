@@ -28,6 +28,10 @@ class RegisterForm(Form):
     user_type = TextField(
     'user_type', validators=[DataRequired(), Length(min=6, max=40)]
     )
+
+    region = TextField(
+        'region', validators=[DataRequired(), Length(min=6, max=40)]
+        )
     #upload = FileField('image', validators=[FileAllowed(['jpg'],'Upload your shitty face')])
 
 

@@ -35,16 +35,18 @@ class User(Base):
 class Transaction(Base):
     __tablename__ = 'Transaction'
 
-    id = db.Column(db.Integer,primary_key=True)
-    user_id = db.Column(db.String(10),db.ForeignKey('Users.id'))
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(10), db.ForeignKey('Users.id'))
     create_user_id = db.relationship("User", foreign_keys=user_id)
     date = db.Column(db.Date)
     amount = db.Column(db.Integer)
+    region = db.Column(db.String(20))
 
-    def __init__(self,user_id,date,amount):
-        self.user_id=user_id
+    def __init__(self,user_id,date,amount,region):
+        self.user_id = user_id
         self.date = date
         self.amount = amount
+        self.region = region
 
 class Retailer(Base):
     __tablename__ = 'Retailer'

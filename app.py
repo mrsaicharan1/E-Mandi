@@ -12,6 +12,7 @@ from flask_uploads import UploadSet,configure_uploads
 from cart import ShoppingCart
 import datetime
 import time
+import random
 
 app = Flask(__name__)
 
@@ -31,7 +32,9 @@ def home():
     items = Retailer.query.all()
     w_items = Wholeseller.query.all()
     govt = Government.query.all()
-    return render_template('pages/index.html',items=items,govt=govt,w_items=w_items)
+    retailer_list = ['kiran','raju','mani','jayanthi','naresh']
+    best_retailer = random.choice(retailer_list)
+    return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,best_retailer=best_retailer)
 
 @app.route('/about')
 def about():
@@ -72,7 +75,7 @@ def login():
                 session['user_id'] = form.user_id.data
                 return redirect(url_for('home'))
         else:
-            user = not_found_error
+             user = not_found_error
 
         if not user:
             error = 'Incorrect credentials'
@@ -86,7 +89,7 @@ def register():
 
     if request.method == 'POST':
         hashed_password = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt(10))
-        data = User(form.name.data, form.email.data, hashed_password, form.user_type.data)
+        data = User(form.name.data, form.email.data, hashed_password, form.user_type.data,form.region.data)
         db.session.add(data)
 	db.session.commit()
         return redirect(url_for('login'))

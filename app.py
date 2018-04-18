@@ -29,7 +29,6 @@ db = SQLAlchemy(app)
 bootstrap=Bootstrap(app)
 em_cart = ShoppingCart()
 em_cart.total = 0
-total_revenue = 0
 
 @app.route('/')
 def home():

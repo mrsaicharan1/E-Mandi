@@ -45,6 +45,14 @@ def home():
 def about():
     return render_template('pages/placeholder.about.html')
 
+@app.route('/base')
+def base():
+    return render_template('layouts/base.html')
+
+@app.route('/newindex')
+def newindex():
+    return render_template('pages/newindex.html')
+
 
 @app.route('/login',methods=['POST','GET'])
 def login():

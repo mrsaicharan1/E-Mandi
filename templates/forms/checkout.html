@@ -27,7 +27,7 @@
     <form method=post action="{{ url_for('checkout')}}">
 
       <h2><span class="glyphicon glyphicon-barcode"></span></h2>
-      <input type="submit" name="pay" value="PROCEED TO BILLING" readonly>
+      <input type="submit" name="pay" value="{{ em_cart.total }}" readonly>
     </form>
 
 </div>

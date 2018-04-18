@@ -29,6 +29,7 @@ db = SQLAlchemy(app)
 bootstrap=Bootstrap(app)
 em_cart = ShoppingCart()
 em_cart.total = 0
+total_revenue = 0
 
 @app.route('/')
 def home():
@@ -38,8 +39,7 @@ def home():
     retailer_list = ['kiran','raju','mani','jayanthi','naresh']
     best_retailer = random.choice(retailer_list)
     connection = engine.connect()
-    s = text("SELECT SUM(amount) FROM Transaction WHERE region=:r")
-    total_revenue = connection.execute(s,r=session['region'])
+    s = text("SELECT SUM(price) FROM Retailer WHERE region=:r")
     return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,best_retailer=best_retailer,total_revenue=total_revenue)
 
 @app.route('/about')
@@ -56,6 +56,15 @@ def login():
     if request.method == 'POST':
         user = User.query.filter_by(name=form.name.data).first()
         # customer login
+        if user.user_type == 'admin':
+            kind = user.user_type
+            if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
+                session['name'] = form.name.data
+                session['user_type']=kind
+                session['user_id'] = form.user_id.data
+                session['region'] = user.region
+                return redirect(url_for('home'))
+
         if user and user.user_type == 'customer' :
             kind = user.user_type
             if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
@@ -97,6 +106,8 @@ def register():
     form=RegisterForm()
 
     if request.method == 'POST':
+        if form.user_type.data == 'admin':
+            alert('You can\'t register as Admin')
         hashed_password = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt(10))
         data = User(form.name.data, form.email.data, hashed_password, form.user_type.data,form.region.data)
         db.session.add(data)
@@ -108,8 +119,12 @@ def register():
 
 @app.route('/admin', methods=['GET','POST'])
 def admin():
-    data = Transaction.query.all()
-    return render_template('pages/admin.html',data=data)
+    if session['user_type'] == 'admin':
+
+        data = Transaction.query.all()
+        return render_template('pages/admin.html',data=data)
+    else:
+        return render_template('pages/not_admin.html')
 
 @app.route('/forgot')
 def forgot():
@@ -134,6 +149,8 @@ def checkout():
         transaction = Transaction(session['user_id'],datetime.date.today(),request.form['pay'],session['region'])
         db.session.add(transaction)
         db.session.commit()
+        total_revenue += request.form['pay']
+
         return redirect(url_for('home'))
 
 
@@ -167,7 +184,7 @@ def r_upload():
 
 @app.route('/w_upload', methods=['GET','POST'])
 def w_upload():
-    form = UploadForm()
+    form = WUploadForm()
     if request.method == 'POST':
         # store in database with transaction id
         vegetable_data = Retailer(form.WholesellerName.data,form.VegetableName.data,form.Price.data)
@@ -177,9 +194,7 @@ def w_upload():
         govt = Government.query.all()
         # render in page
 
-        return render_template('pages/index.html',items=items,name_vegetable=form.VegetableName.data,
-                            price_vegetable=form.Price.data,wholeseller_name=form.WholesellerName.data,govt=govt)
-
+        return redirect(url_for('home'))
     return render_template('forms/wholeseller-upload.html', form=form)
 
 
@@ -197,7 +212,11 @@ def register_complaint():
     return render_template('forms/register-complaint.html', title='Register', form=form)
 
 
-
+@app.route('/pages/feedback.html',methods=['POST','GET'])
+def feedback():
+    return render_template('forms/feedback.html')
+    if request.method == 'POST':
+        return redirect(url_for('home'))
 
 # Error handlers.
 

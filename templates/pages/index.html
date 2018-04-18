@@ -57,8 +57,8 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
         <li><a href="{{url_for('cart')}}">Cart</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="{{url_for('feedback')}}">Feedback</a></li>
+        <li><a href="static/pages/help.html">Help</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if not session %}

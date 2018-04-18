@@ -85,6 +85,24 @@ class Government(Base):
          self.vegetable_name = vegetable_name
          self.price = price
 
+class Feedback(Base):
+    __tablename__='Feedback'
+
+    id = db.Column(db.Integer,primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+    create_user_id = db.relationship("User", foreign_keys=user_id)
+    title = db.Column(db.String(60))
+    status = db.Column(db.String(60))
+    date = date = db.Column(db.Date)
+
+    def __init__(self,user_id,date,title,status):
+        self.user_id = user_id
+        self.date = date
+        self.title = title
+        self.status = status
+
+
+
 
 # Create tables.
 Base.metadata.create_all(bind=engine)

@@ -38,21 +38,13 @@ def home():
     retailer_list = ['kiran','raju','mani','jayanthi','naresh']
     best_retailer = random.choice(retailer_list)
     connection = engine.connect()
-    total_revenue = 1
     s = text("SELECT SUM(price) FROM Retailer WHERE region=:r")
+    total_revenue = 450
     return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,best_retailer=best_retailer,total_revenue=total_revenue)
 
 @app.route('/about')
 def about():
     return render_template('pages/placeholder.about.html')
-
-@app.route('/base')
-def base():
-    return render_template('layouts/base.html')
-
-@app.route('/newindex')
-def newindex():
-    return render_template('pages/newindex.html')
 
 
 @app.route('/login',methods=['POST','GET'])
@@ -101,7 +93,7 @@ def login():
                 session['region'] = user.region
                 return redirect(url_for('home'))
         else:
-             user = not_found_error
+             return render_template('errors/500.html')
 
         if not user:
             error = 'Incorrect credentials'
@@ -157,11 +149,8 @@ def checkout():
         transaction = Transaction(session['user_id'],datetime.date.today(),request.form['pay'],session['region'])
         db.session.add(transaction)
         db.session.commit()
-        total_revenue += request.form['pay']
 
         return redirect(url_for('home'))
-
-
 
 @app.route('/logout',methods=['POST','GET'])
 def logout():
@@ -222,9 +211,17 @@ def register_complaint():
 
 @app.route('/pages/feedback.html',methods=['POST','GET'])
 def feedback():
-    return render_template('forms/feedback.html')
     if request.method == 'POST':
+        feedback = Feedback(request.form['email'],datetime.date.today(),request.form['message'],'in-process')
+        db.session.add(feedback)
+        db.session.commit()
         return redirect(url_for('home'))
+
+    return render_template('forms/feedback.html')
+
+# @app.route('/pages/help.html',methods=['POST','GET'])
+# def help():
+#     return render_template('pages/help.html')
 
 # Error handlers.
 

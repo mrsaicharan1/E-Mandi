@@ -38,6 +38,7 @@ def home():
     retailer_list = ['kiran','raju','mani','jayanthi','naresh']
     best_retailer = random.choice(retailer_list)
     connection = engine.connect()
+    total_revenue = 1
     s = text("SELECT SUM(price) FROM Retailer WHERE region=:r")
     return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,best_retailer=best_retailer,total_revenue=total_revenue)
 

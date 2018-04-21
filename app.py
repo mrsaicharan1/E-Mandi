@@ -13,7 +13,7 @@ from flask_mail import Mail,Message
 import datetime
 import time
 import random
-engine = create_engine('sqlite:///user.db', echo=True)
+engine = create_engine('sqlite:///user.db', connect_args={'check_same_thread': False},echo=True)
 from sqlalchemy.sql import text
 
 

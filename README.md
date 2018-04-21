@@ -1,26 +1,28 @@
-# An e-commerce web application made with Flask and SQLAlchemy
+# Description
+*An e-commerce web application made with Flask and SQLAlchemy
 
-# You can start the application by running the command `python app.py` at the root of the folder using your terminal.
+# Instructions
+ *You can start the application by running the command `python app.py` at the root of the folder using your terminal.
 
-Features of the Application:
+# Features of the Application:
 
-# Login/Signup with full functionality
+*Login/Signup with full functionality
 
-# Wholeseller and Retailer price transparency
+*Wholeseller and Retailer price transparency
 
-# Admin database transaction view
+*Admin database transaction view
 
-# Payments with user exclusive confirmation Mails.
+*Payments with user exclusive confirmation Mails.
 
-# An elusive shopping cart implemented using OOP
+*An elusive shopping cart implemented using OOP
 
-# Wholeseller and Retailer Grocery Upload functionality
+*Wholeseller and Retailer Grocery Upload functionality
 
-# Best Retailer Information
+*Best Retailer Information
 
-# Uses optimized database functionalities instead of Standard SQL queries(SQLAlchemy)
+*Uses optimized database functionalities instead of Standard SQL queries(SQLAlchemy)
 
-# Efficient exception handling for forms 
+*Efficient exception handling for forms 
 
-# Next generation tecchnologies such as Flask and SQLAlchemy to keep it future-proof.
+*Next generation tecchnologies such as Flask and Intelligent bcrypt hashing to keep it future-proof and secure.
 

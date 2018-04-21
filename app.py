@@ -13,7 +13,9 @@ from flask_mail import Mail,Message
 import datetime
 import time
 import random
-engine = create_engine('sqlite:///user.db', connect_args={'check_same_thread': False},echo=True)
+from sqlalchemy.pool import StaticPool
+engine = create_engine('sqlite:///user.db',echo=True)
+
 from sqlalchemy.sql import text
 
 
@@ -24,7 +26,8 @@ app = Flask(__name__)
 photos = UploadSet('photos',IMAGES)
 connection = engine.connect()
 
-app.config.from_object('config') # link config.py to this file(with all databse file paths, image upload paths)
+app.config.from_object('config')
+mail = Mail(app) # link config.py to this file(with all databse file paths, image upload paths)
 app.config.update(dict(
     DEBUG = True,
     # email server
@@ -33,10 +36,10 @@ app.config.update(dict(
     MAIL_USE_TLS = False,
     MAIL_USE_SSL = True,
     MAIL_USERNAME = 'saicharan.reddy1@gmail.com',
-    MAIL_PASSWORD = 'Anksbro1',
+    MAIL_PASSWORD = 'kyogre84',
 
     # administrator list
-    ADMINS = ['saicharan.reddy1@gmail.com']
+    ADMINS = ['saicharan.reddy1@gmail.com','itm2016009@iiita.ac.in']
 ))
 configure_uploads(app,photos)
 
@@ -178,7 +181,6 @@ def checkout():
         transaction = Transaction(session['user_id'],datetime.date.today(),request.form['pay'],session['region'])
         db.session.add(transaction)
         db.session.commit()
-        session['order_id'] = connection.execute("SELECT id FROM 'Transaction' ORDER BY DATE DESC LIMIT 1")
 
 
     return redirect(url_for('confirmation'))
@@ -186,11 +188,13 @@ def checkout():
 @app.route('/confirmation',methods=['POST','GET'])
 def confirmation():
     if request.method == 'GET':
-        msg = Message("Thank you for shopping with us! Your order has been placed. ",
+        msg = Message("Order confirmation Mail ",
                   sender="from@example.com")
+        msg.body = "Thank you for shopping with us! Your order has been placed. with love from E-Mandi"
         msg.add_recipient(session['user_email'])
+
         with app.app_context():
-            mail.send(msg)
+             mail.send(msg)
         order_placed = True
         return redirect(url_for('home'))
 

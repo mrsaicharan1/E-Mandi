@@ -9,7 +9,7 @@ from models import *
 import bcrypt
 from werkzeug import secure_filename, FileStorage
 from flask_uploads import UploadSet,configure_uploads
-from cart import ShoppingCart
+from flask_mail import Mail,Message
 import datetime
 import time
 import random
@@ -17,18 +17,36 @@ engine = create_engine('sqlite:///user.db', echo=True)
 from sqlalchemy.sql import text
 
 
+from cart import ShoppingCart
+
 app = Flask(__name__)
 
 photos = UploadSet('photos',IMAGES)
+connection = engine.connect()
 
 app.config.from_object('config') # link config.py to this file(with all databse file paths, image upload paths)
+app.config.update(dict(
+    DEBUG = True,
+    # email server
+    MAIL_SERVER = 'smtp.googlemail.com',
+    MAIL_PORT = 465,
+    MAIL_USE_TLS = False,
+    MAIL_USE_SSL = True,
+    MAIL_USERNAME = 'saicharan.reddy1@gmail.com',
+    MAIL_PASSWORD = 'Anksbro1',
 
+    # administrator list
+    ADMINS = ['saicharan.reddy1@gmail.com']
+))
 configure_uploads(app,photos)
 
 db = SQLAlchemy(app)
 bootstrap=Bootstrap(app)
-em_cart = ShoppingCart()
+mail = Mail(app)
+
+em_cart = ShoppingCart()# initializations
 em_cart.total = 0
+order_placed = False
 
 @app.route('/')
 def home():
@@ -37,22 +55,14 @@ def home():
     govt = Government.query.all()
     retailer_list = ['kiran','raju','mani','jayanthi','naresh']
     best_retailer = random.choice(retailer_list)
-    connection = engine.connect()
     s = text("SELECT SUM(price) FROM Retailer WHERE region=:r")
     total_revenue = 450
-    return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,best_retailer=best_retailer,total_revenue=total_revenue)
+    return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,
+    best_retailer=best_retailer,total_revenue=total_revenue,order_placed=order_placed)
 
 @app.route('/about')
 def about():
     return render_template('pages/placeholder.about.html')
-
-@app.route('/homepage')
-def homepage():
-    return render_template('pages/homepage.html')
-
-@app.route('/newindex')
-def newindex():
-    return render_template('pages/newindex.html')
 
 
 @app.route('/login',methods=['POST','GET'])
@@ -71,6 +81,7 @@ def login():
                 session['user_type']=kind
                 session['user_id'] = form.user_id.data
                 session['region'] = user.region
+                session['user_email'] = user.email
                 return redirect(url_for('home'))
 
         if user and user.user_type == 'customer' :
@@ -80,6 +91,7 @@ def login():
                 session['user_type']=kind
                 session['user_id'] = form.user_id.data
                 session['region'] = user.region
+                session['user_email'] = user.email
                 return redirect(url_for('home'))
 
         # retailer login
@@ -90,6 +102,7 @@ def login():
                 session['user_type']=kind
                 session['user_id'] = form.user_id.data
                 session['region'] = user.region
+                session['user_email'] = user.email
                 return redirect(url_for('home'))
         # wholeseller login
         if user and user.user_type == 'wholeseller' :
@@ -99,6 +112,7 @@ def login():
                 session['user_type']=kind
                 session['user_id'] = form.user_id.data
                 session['region'] = user.region
+                session['user_email'] = user.email
                 return redirect(url_for('home'))
         else:
              return render_template('errors/500.html')
@@ -106,7 +120,6 @@ def login():
         if not user:
             error = 'Incorrect credentials'
     return render_template('forms/login.html', form=form, error=error)
-
 
 
 @app.route('/register',methods=['POST','GET'])
@@ -157,8 +170,22 @@ def checkout():
         transaction = Transaction(session['user_id'],datetime.date.today(),request.form['pay'],session['region'])
         db.session.add(transaction)
         db.session.commit()
+        session['order_id'] = connection.execute("SELECT id FROM 'Transaction' ORDER BY DATE DESC LIMIT 1")
 
+
+    return redirect(url_for('confirmation'))
+
+@app.route('/confirmation',methods=['POST','GET'])
+def confirmation():
+    if request.method == 'GET':
+        msg = Message("Thank you for shopping with us! Your order has been placed. ",
+                  sender="from@example.com")
+        msg.add_recipient(session['user_email'])
+        with app.app_context():
+            mail.send(msg)
+        order_placed = True
         return redirect(url_for('home'))
+
 
 @app.route('/logout',methods=['POST','GET'])
 def logout():

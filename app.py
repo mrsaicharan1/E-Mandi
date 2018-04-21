@@ -55,7 +55,8 @@ def home():
     connection = engine.connect()
     s = text("SELECT SUM(price) FROM Retailer WHERE region=:r")
     total_revenue = 450
-    return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,best_retailer=best_retailer,total_revenue=total_revenue)
+    return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,
+    best_retailer=best_retailer,total_revenue=total_revenue,order_placed=order_placed)
 
 @app.route('/about')
 def about():
@@ -167,6 +168,8 @@ def checkout():
         transaction = Transaction(session['user_id'],datetime.date.today(),request.form['pay'],session['region'])
         db.session.add(transaction)
         db.session.commit()
+        t = Transaction.query.all()
+        session['order_id'] = t.id
 
         return redirect(url_for('confirmation'))
 
@@ -175,10 +178,10 @@ def confirmation():
     if request.method == 'GET':
         msg = Message("Thank you for shopping with us! Your order has been placed. ",
                   sender="from@example.com")
-        msg.add_recipient('iec2016041@iiita.ac.in')
+        msg.add_recipient(session['user_email'])
         with app.app_context():
             mail.send(msg)
-
+        order_placed = True
         return redirect(url_for('home'))
 
 

@@ -2,7 +2,7 @@
 
 # You can start the application by running the command `python app.py` at the root of the folder using your terminal.
 
-# Features being implemented:
+Features of the Application:
 
 # Login/Signup with full functionality
 
@@ -10,7 +10,17 @@
 
 # Admin database transaction view
 
-# Payments with Flask-Stripe
+# Payments with user exclusive confirmation Mails.
 
-# An elusive shopping cart 
+# An elusive shopping cart implemented using OOP
+
+# Wholeseller and Retailer Grocery Upload functionality
+
+# Best Retailer Information
+
+# Uses optimized database functionalities instead of Standard SQL queries(SQLAlchemy)
+
+# Efficient exception handling for forms 
+
+# Next generation tecchnologies such as Flask and SQLAlchemy to keep it future-proof.
 

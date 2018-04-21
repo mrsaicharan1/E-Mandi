@@ -89,7 +89,7 @@ function googleTranslateElementInit() {
 </nav>
 {% if order_placed %}
 <div class="alert alert-success">
-  <strong>Success!</strong> Your Order has been placed successfully! Order id is {{ session['order_id'] }}
+  <strong>Success!</strong> Your Order has been placed successfully!
 </div>
 {% endif %}
 <div class="container-fluid text-center">
@@ -148,7 +148,7 @@ function googleTranslateElementInit() {
 
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'tomato' %}
-  			<img src="static/img/tomato.jpg"/><br><br>
+  			<img src="static/img/tomato.jpg" height='300px' width='300px'/><br><br>
   			<b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
 
         <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
@@ -175,7 +175,7 @@ function googleTranslateElementInit() {
 
 			{% for item in items %}
 			{% if item['vegetable_name'] == 'cucumber' %}
-  			<img src="static/img/cucumber.jpg"/><br><br>
+  			<img src="static/img/cucumber.jpg" height='300px' width='300px'/><br><br>
   			<b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
   			<b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
       	<b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
@@ -196,7 +196,7 @@ function googleTranslateElementInit() {
 
       {% for item in items %}
       {% if item['vegetable_name'] == 'cabbage' %}
-        <img src="static/img/cabbage.jpg"/><br><br>
+        <img src="static/img/cabbage.jpg" height='300px' width='300px'/><br><br>
         <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
         <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
       	<b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
@@ -218,7 +218,7 @@ function googleTranslateElementInit() {
 
       {% for item in items %}
       {% if item['vegetable_name'] == 'potato' %}
-        <img src="static/img/potato.jpg"/><br><br>
+        <img src="static/img/potato.jpg" height='300px' width='300px'/><br><br>
         <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
         <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
       	<b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
@@ -240,7 +240,7 @@ function googleTranslateElementInit() {
 
     {% for item in items %}
     {% if item['vegetable_name'] == 'brinjal' %}
-      <img src="static/img/brinjal.jpg"/><br><br>
+      <img src="static/img/brinjal.jpg" height='300px' width='300px'/><br><br>
       <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ item['vegetable_name'] }}" readonly><br><br>
       <b>Retailer Name</b><input type="text" name="retailer_name" value="{{ item['retailer_name'] }}" readonly><br><br>
       <b>Retailer Price</b><input type="submit" name="vegetable_price" value="{{ item['price'] }}" readonly><br><br>
@@ -260,23 +260,23 @@ function googleTranslateElementInit() {
     <b><h3> Items from various Wholesellers</h3></b><br>
     {% for witem in w_items %}
       {% if witem['vegetable_name'] == 'tomato' %}
-      <img src="static/img/tomato.jpg"/><br><br>
+      <img src="static/img/tomato.jpg" height='300px' width='300px'/><br><br>
       {% elif witem['vegetable_name'] == 'potato' %}
-      <img src="static/img/potato.jpg"/><br><br>
+      <img src="static/img/potato.jpg" height='300px' width='300px'/><br><br>
       {% elif witem['vegetable_name'] == 'cucumber' %}
-      <img src="static/img/cucumber.jpg"/><br><br>
+      <img src="static/img/cucumber.jpg" height='300px' width='300px'/><br><br>
       {% elif witem['vegetable_name'] == 'brinjal' %}
-      <img src="static/img/brinjal.jpg"/><br><br>
+      <img src="static/img/brinjal.jpg" height='300px' width='300px'/><br><br>
       {% elif witem['vegetable_name'] == 'carrot' %}
-      <img src="static/img/carrot.jpg"/><br><br>
+      <img src="static/img/carrot.jpg" height='300px' width='300px'/><br><br>
       {% elif witem['vegetable_name'] == 'onion' %}
-      <img src="static/img/onion.jpg"/><br><br>
+      <img src="static/img/onion.jpg" height='300px' width='300px'/><br><br>
       {% elif witem['vegetable_name'] == 'spinach' %}
-      <img src="static/img/spinach.jpg"/><br><br>
+      <img src="static/img/spinach.jpg" height='300px' width='300px'/><br><br>
       {% elif witem['vegetable_name'] == 'capsicum' %}
-      <img src="static/img/capsicum.jpg"/><br><br>
+      <img src="static/img/capsicum.jpg" height='300px' width='300px'/><br><br>
       {% elif witem['vegetable_name'] == 'cabbage' %}
-      <img src="static/img/cabbage.jpg"/><br><br>
+      <img src="static/img/cabbage.jpg" height='300px' width='300px'/><br><br>
       {% endif %}
     <b>Vegetable Name</b> <input type="text" name="vegetable_name" value="{{ witem['vegetable_name'] }}" readonly><br><br>
     <b>Wholeseller Name</b><input type="text" name="wholeseller_name" value="{{ witem['wholeseller_name'] }}" readonly><br><br>

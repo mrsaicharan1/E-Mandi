@@ -55,7 +55,6 @@ def home():
     govt = Government.query.all()
     retailer_list = ['kiran','raju','mani','jayanthi','naresh']
     best_retailer = random.choice(retailer_list)
-    s = text("SELECT SUM(price) FROM Retailer WHERE region=:r")
     total_revenue = 450
     return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,
     best_retailer=best_retailer,total_revenue=total_revenue,order_placed=order_placed)
@@ -137,7 +136,16 @@ def register():
     if request.method == 'GET':
         return render_template('forms/register.html',form=form)
 
+@app.route('/newindex')
+def newindex():
+    items = Retailer.query.all()
+    w_items = Wholeseller.query.all()
+    govt = Government.query.all()
+    return render_template('pages/newindex.html',items=items,w_items=w_items,govt=govt)
 
+@app.route('/homepage')
+def homepage():
+    return render_template('pages/homepage.html')
 @app.route('/admin', methods=['GET','POST'])
 def admin():
     if session['user_type'] == 'admin':

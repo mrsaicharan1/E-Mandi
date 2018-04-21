@@ -21,6 +21,7 @@ from cart import ShoppingCart
 app = Flask(__name__)
 
 photos = UploadSet('photos',IMAGES)
+connection = engine.connect()
 
 app.config.from_object('config') # link config.py to this file(with all databse file paths, image upload paths)
 app.config.update(dict(
@@ -44,6 +45,7 @@ mail = Mail(app)
 
 em_cart = ShoppingCart()# initializations
 em_cart.total = 0
+order_placed = False
 
 @app.route('/')
 def home():
@@ -52,7 +54,6 @@ def home():
     govt = Government.query.all()
     retailer_list = ['kiran','raju','mani','jayanthi','naresh']
     best_retailer = random.choice(retailer_list)
-    connection = engine.connect()
     s = text("SELECT SUM(price) FROM Retailer WHERE region=:r")
     total_revenue = 450
     return render_template('pages/index.html',items=items,govt=govt,w_items=w_items,
@@ -168,10 +169,10 @@ def checkout():
         transaction = Transaction(session['user_id'],datetime.date.today(),request.form['pay'],session['region'])
         db.session.add(transaction)
         db.session.commit()
-        t = Transaction.query.all()
-        session['order_id'] = t.id
+        session['order_id'] = connection.execute("SELECT id FROM 'Transaction' ORDER BY DATE DESC LIMIT 1")
 
-        return redirect(url_for('confirmation'))
+
+    return redirect(url_for('confirmation'))
 
 @app.route('/confirmation',methods=['POST','GET'])
 def confirmation():

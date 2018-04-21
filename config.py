@@ -11,9 +11,7 @@ DEBUG = True
 SECRET_KEY = 'my precious'
 
 # Connect to the database(relative path)
-SQLALCHEMY_DATABASE_URI = 'sqlite:///user.db'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///user.db' 
 
 # upload photos
 UPLOADED_PHOTOS_DEST = 'static/img'
-
-# flask mail config

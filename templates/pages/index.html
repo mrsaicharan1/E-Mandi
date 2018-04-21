@@ -26,6 +26,7 @@ function googleTranslateElementInit() {
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
+      background-image: url("static/img/bgpg.jpg")
       height: 100%;
     }
 
@@ -46,7 +47,7 @@ function googleTranslateElementInit() {
     }
   </style>
 </head>
-<body>
+<body background="static/img/bgpg.jpg">
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -293,9 +294,6 @@ function googleTranslateElementInit() {
       </div>
       <div class="well">
         <p><b>Region:</b> <i>{{ session['region'] }}</i></p>
-      </div>
-      <div class="well">
-        <p><b>Revenue Generated:</b> <i>{{ session['total_revenue'] }}</i></p>
       </div>
     </div>
   </div>

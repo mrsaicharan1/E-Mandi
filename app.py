@@ -260,7 +260,7 @@ def feedback():
         db.session.commit()
         return redirect(url_for('home'))
 
-    return render_template('forms/feedback.html')
+    return render_template('pages/feedback.html')
 
 # @app.route('/pages/help.html',methods=['POST','GET'])
 # def help():

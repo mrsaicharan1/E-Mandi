@@ -9,3 +9,4 @@ flask_uploads
 # ecdsa
 # paramiko
 # pycrypto
+Flask-Mail

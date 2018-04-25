@@ -22,6 +22,8 @@
 
 *Uses optimized database functionalities instead of Standard SQL queries(SQLAlchemy)
 
+*Regional Languages support
+
 *Efficient exception handling for forms 
 
 *Next generation tecchnologies such as Flask and Intelligent bcrypt hashing to keep it future-proof and secure.
